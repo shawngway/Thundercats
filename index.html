@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>NEXTGAME</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
-    
+    <div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid text-center">
+            <div class="container">
+                <h1 class="display-4">NEXTGAME</h1>
+                <p class="text-muted">(logo/catchphrase/description here?)</p>
+            </div>
+        </div>
+        <form class="text-center">
+                <div class="form-group">
+                  <label for="gameInput">Game Title</label>
+                  <input type="text" class="form-control" id="gameInput" aria-describedby="inputRules" placeholder="Enter Game Title">
+                  <small id="inputRules" class="form-text text-muted">Enter a game you love and use the button below to get some great recommendations from us!</small>
+                </div>
+                <button type="submit" class="btn btn-dark">Submit</button>
+    </div>
 </body>
+
 </html>
