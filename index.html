@@ -24,18 +24,18 @@
                 <h1 class="display-4">NEXTGAME</h1>
                 <p class="text-muted">(logo/catchphrase/description here?)</p>
             </div>
+           <!-- input for searching by title.  we can add more parameters here (year, company) if we want.  our genre img links can go before or after, haven't made them yet -->
+        <form class="text-center my-1 col-md-4 offset-md-4">
+                <div class="form-group">
+                    <label for="gameInput">Search For A Game By Title</label>
+                    <input type="text" class="form-control" id="gameInput" aria-describedby="inputRules"
+                        placeholder="Enter Game Title">
+                    <small id="inputRules" class="form-text text-muted">Enter a game you love and use the button below to
+                        get some great recommendations from us!</small>
+                </div>
+                <button type="submit" class="btn btn-dark">Submit</button>
+            </form> 
         </div>
-        <!-- input for searching by title.  we can add more parameters here (year, company) if we want.  our genre img links can go before or after, haven't made them yet -->
-        <form class="text-center my-1">
-            <div class="form-group">
-                <label for="gameInput">Search For A Game By Title</label>
-                <input type="text" class="form-control" id="gameInput" aria-describedby="inputRules"
-                    placeholder="Enter Game Title">
-                <small id="inputRules" class="form-text text-muted">Enter a game you love and use the button below to
-                    get some great recommendations from us!</small>
-            </div>
-            <button type="submit" class="btn btn-dark" id="search">Submit</button>
-        </form>
         <!-- carousel fun with some example game covers. we can play with this, use it to scroll genres or recommendations, definitely need to make it shorter (height). -->
         <div id="carouselExampleIndicators" class="carousel slide m-auto col-sm-4" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -44,18 +44,18 @@
                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                <div class="carousel-item active" data-toggle="modal" data-target="#gameModal">
                     <img class="d-block img-fluid w-100"
                         src="https://board.sonicstadium.org/applications/core/interface/imageproxy/imageproxy.php?img=https://images-na.ssl-images-amazon.com/images/I/71y3rzfuUlL._AC_SX430_.jpg&key=ab4a6028b234a8830fa824e9cacef82d655639ba753ef80e8d35a03441685b9c"
                         height="400"
                         alt="First slide">
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item" data-toggle="modal" data-target="#gameModal">
                     <img class="d-block w-100"
                         src="https://cdn.tutsplus.com/psd/uploads/legacy/psdtutsarticles/linkb_60vgamecovers/42.jpg"
                         alt="Second slide">
                 </div>
-                <div class="carousel-item">
+                <div class="carousel-item" data-toggle="modal" data-target="#gameModal">
                     <img class="d-block w-100"
                         src="http://images.pushsquare.com/games/ps4/call_of_duty_black_ops_iii/cover_large.jpg"
                         alt="Third slide">
@@ -70,6 +70,24 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
+        <div class="modal fade" id="gameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Game Info</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      this is where we'll have a synopsis of the game as well as hopefully a video, ratings/reviews, and maybe a beer or playlist pairing!
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
