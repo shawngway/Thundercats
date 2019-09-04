@@ -27,8 +27,20 @@
                     <label for="gameInput">Search For A Game By Title</label>
                     <input type="text" class="form-control" id="gameInput" aria-describedby="inputRules"
                         placeholder="Enter Game Title">
-                    <small id="inputRules" class="form-text text-muted">Enter a game you love and use the button below to
-                        get some great recommendations from us!</small>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="xboxRadio" value="option1">
+                            <label class="form-check-label" for="xboxRadio">Xbox 1</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="psRadio" value="option1">
+                            <label class="form-check-label" for="psRadio">PS4</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="pcRadio" value="option1">
+                            <label class="form-check-label" for="pcRadio">PC</label>
+                          </div>
+                          <small id="inputRules" class="form-text text-muted">Enter a game you love and use the button below to
+                            get some great recommendations from us!</small>
                 </div>
                 <button type="submit" class="btn btn-dark">Submit</button>
             </form> 
