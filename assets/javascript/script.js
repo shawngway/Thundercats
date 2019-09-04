@@ -1,6 +1,6 @@
 //global variables
 var gameTitleInput;
-
+var genreBeingSearched;
 
 var search = function() {
    
@@ -24,6 +24,14 @@ $("#submitButton").on("click", function (e) {
   }
   else $("#invalidTitle").css({"display": "block", "color": "red", "margin-top" : "10px"});       //error message appears if form isn't filled out properly
 
+})
+
+$(".genre-buttons").on("click", "button", function (event){
+  console.log("chicken")
+  console.log(this)
+  genreBeingSearched = this.id
+
+  console.log(genreBeingSearched)
 })
 
 //appends divs to game area
