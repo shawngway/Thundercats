@@ -1,4 +1,7 @@
-<<<<<<< HEAD
+//global variables
+var gameTitleInput;
+
+
 var search = function() {
    
     event.preventDefault()
@@ -11,6 +14,18 @@ var search = function() {
 
 }
 
+$("#submitButton").on("click", function (e) {
+  event.preventDefault();
+  if (($("#gameInput").val().trim() !== "")) {
+      gameTitleInput = $("#gameInput").val().trim();
+      console.log(gameTitleInput)
+      $("#invalidTitle").css({"display" : "none"})
+      
+  }
+  else $("#invalidTitle").css({"display": "block", "color": "red", "margin-top" : "10px"});       //error message appears if form isn't filled out properly
+
+})
+
 //appends divs to game area
 
 var gameImage = "picture"//cover
@@ -22,17 +37,9 @@ var gameRating = "rating"//game rating
 var gameBox = $("<img>").addClass("gamebox");
 
 
-
-
-
-//ends appends to game area
-
-$(document).on("click", "#search", search) //on click of the sumbit button, calls the search function
-=======
 // Example queryURL for Giphy API
     // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
     var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
-​
     $.ajax({
       url: queryURL,
       method: "POST",
@@ -42,7 +49,14 @@ $(document).on("click", "#search", search) //on click of the sumbit button, call
       data: "fields *; where id = 104945;"
     }).then(function(response) {
       console.log(response);
+      var title = response[0].name
+      console.log(title)
+      $("#exampleModalLabel").append(title + " Info")
     }).fail(function(jqXHR, textStatus) { 
       console.error(textStatus)
     });
->>>>>>> 0aa84df1163437b9534fc056f76d2b3531841483
+
+
+//ends appends to game area
+
+$(document).on("click", "#search", search) //on click of the sumbit button, calls the search function
