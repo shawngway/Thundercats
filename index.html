@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>NEXTGAME</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -19,32 +27,44 @@
         <div class="jumbotron jumbotron-fluid text-center">
             <div class="container">
                 <h1 class="display-4">NEXTGAME</h1>
-                <p class="text-muted">(logo/catchphrase/description here?)</p>
+                <p class="text-muted">(Find, bookmark and search for your next video game!)</p>
             </div>
-           <!-- input for searching by title.  we can add more parameters here (year, company) if we want.  our genre img links can go before or after, haven't made them yet -->
-        <form class="text-center my-1 col-md-4 offset-md-4">
+            <!-- input for searching by title.  we can add more parameters here (year, company) if we want.  our genre img links can go before or after, haven't made them yet -->
+            <form class="text-center my-1 col-md-4 offset-md-4">
                 <div class="form-group">
                     <label for="gameInput">Search For A Game By Title</label>
                     <input type="text" class="form-control" id="gameInput" aria-describedby="inputRules"
                         placeholder="Enter Game Title">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="xboxRadio" value="option1">
-                            <label class="form-check-label" for="xboxRadio">Xbox 1</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="psRadio" value="option1">
-                            <label class="form-check-label" for="psRadio">PS4</label>
-                          </div>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="pcRadio" value="option1">
-                            <label class="form-check-label" for="pcRadio">PC</label>
-                          </div>
-                          <small id="inputRules" class="form-text text-muted">Enter a game you love and use the button below to
-                            get some great recommendations from us!</small>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="xboxRadio"
+                            value="option1">
+                        <label class="form-check-label" for="xboxRadio">Xbox 1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="psRadio"
+                            value="option1">
+                        <label class="form-check-label" for="psRadio">PS4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="pcRadio"
+                            value="option1">
+                        <label class="form-check-label" for="pcRadio">PC</label>
+                    </div>
+                    <small id="inputRules" class="form-text text-muted">Enter a game you love and use the button below
+                        to
+                        get some great recommendations from us!</small>
+
                 </div>
-                <button type="submit" class="btn btn-dark">Submit</button>
-            </form> 
+                <button type="submit" id="submitButton" class="btn btn-dark">Submit</button>
+                <p id="invalidTitle">Please enter a valid Game title first</p>
+            </form>
         </div>
+        <div class="genre-buttons">
+            <button type="button" class="btn btn-primary" id="horror" attr="horror">Horror</button>
+            <button type="button" class="btn btn-secondary" id="shooter" attr="shooter ">Shooter</button>
+            <button type="button" class="btn btn-success" id="moba" attr="moba">Moba</button>
+        </div>
+        <!-- input for searching by title.  we can add more parameters here (year, company) if we want.  our genre img links can go before or after, haven't made them yet -->
         <!-- carousel fun with some example game covers. we can play with this, use it to scroll genres or recommendations, definitely need to make it shorter (height). -->
         <div id="carouselExampleIndicators" class="carousel slide m-auto col-sm-4" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -56,8 +76,7 @@
                 <div class="carousel-item active" data-toggle="modal" data-target="#gameModal">
                     <img class="d-block img-fluid w-100"
                         src="https://board.sonicstadium.org/applications/core/interface/imageproxy/imageproxy.php?img=https://images-na.ssl-images-amazon.com/images/I/71y3rzfuUlL._AC_SX430_.jpg&key=ab4a6028b234a8830fa824e9cacef82d655639ba753ef80e8d35a03441685b9c"
-                        height="400"
-                        alt="First slide">
+                        height="400" alt="First slide">
                 </div>
                 <div class="carousel-item" data-toggle="modal" data-target="#gameModal">
                     <img class="d-block w-100"
@@ -79,38 +98,27 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-        <div class="modal fade" id="gameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
+        <div class="modal fade" id="gameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Game Info</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
-                      this is where we'll have a synopsis of the game as well as hopefully a video, ratings/reviews, and maybe a beer or playlist pairing!
+                        this is where we'll have a synopsis of the game as well as hopefully a video, ratings/reviews,
+                        and maybe a beer or playlist pairing!
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
-                  </div>
                 </div>
-              </div>
+            </div>
+        </div>
     </div>
-    <!-- put all of these except the last in the header? -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
     <script src="assets/javascript/script.js"></script>
 </body>
 
