@@ -1,24 +1,19 @@
+$(document).ready(function () {
 //global variables
 var gameTitleInput;
 var genreBeingSearched;
-
-var search = function() {
-   
-    event.preventDefault()
-
-    var gameTitleInput = $("#gameInput").val()
-
-    console.log(gameTitleInput)
-
-    $("#gameInput").val("")
-
-}
 
 $("#submitButton").on("click", function (e) {
   event.preventDefault();
   if (($("#gameInput").val().trim() !== "")) {
       gameTitleInput = $("#gameInput").val().trim();
       console.log(gameTitleInput)
+
+
+    //ajax call referencing title to get id number to get object
+
+
+
       $("#invalidTitle").css({"display" : "none"})
       
   }
@@ -67,4 +62,4 @@ var gameBox = $("<img>").addClass("gamebox");
 
 //ends appends to game area
 
-$(document).on("click", "#search", search) //on click of the sumbit button, calls the search function
+  })
