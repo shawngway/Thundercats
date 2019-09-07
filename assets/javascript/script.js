@@ -3,43 +3,73 @@ $(document).ready(function () {
 var gameTitleInput;
 var genreBeingSearched;
 
-$("#submitButton").on("click", function (e) {
-  event.preventDefault();
 
-  if (($("#gameInput").val().trim() !== "")) {
-      gameTitleInput = $("#gameInput").val().trim().replace(/\s/g, '-');
-      console.log(gameTitleInput)
+$("#submitButton").on("click", function (event) { //whenever the submit button is clicked
+  event.preventDefault()
+  gameTitleInput = $("#gameInput").val().trim().replace(/\s/g,'-'); //sets gameTitleInput to text input
+  $("#gameInput").val("")
+  if ((gameTitleInput !== "")) { //if gameTitleInput is not null
 
+      $("#invalidTitle").css({"display" : "none"}) //error message is not there
 
-    // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
-    var queryURL = "https://api.rawg.io/api/games/" + gameTitleInput + "/suggested?page_size=5";
+      //API
+
+      var queryURL = "https://api.rawg.io/api/games/" + gameTitleInput + "/suggested?page_size=5"
+
     $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
-      // After data comes back from the request
-      .then(function (response) {
-          console.log(response)
+        url: queryURL,
+        method: "GET"
+      }).then(function(response) {
+
+        console.log(response.results)
+
+        for (i=0; i<response.results.length; i++) {
+
+          console.log(response.results[i].name)
+
+        var cover = $("<img>")
+
+        cover.attr("class", 'uk-panel')
+
+        cover.attr("data-toggle", 'modal')
+
+        cover.attr("data-target", '#gameModal')
+
+        cover.attr("src", response.results[i].short_screenshots[0].image)
+
+        $("#gameSugg").append("<li>").append("<div>").append(cover)
+
+        }
       })
-
-
-
-      $("#invalidTitle").css({"display" : "none"})
       
+      //appending div to the output
   }
   else $("#invalidTitle").css({"display": "block", "color": "red", "margin-top" : "10px"});       //error message appears if form isn't filled out properly
 
 })
 
-$(".genre-buttons").on("click", "button", function (event){
+
+
+
+
+
+
+
+
+
+$(".genre-buttons").on("click", "button", function (){ //whenever a genre button is clicked
   console.log("chicken")
-  console.log(this)
   genreBeingSearched = this.id
 
   console.log(genreBeingSearched)
 })
 
+//appends divs to game area
 
-//ends appends to game area
+// var gameImage = "picture"//cover
 
-  })
+// var gameTitle = "name"//game name
+
+// var gameRating = "rating"//game rating
+
+// var gameBox = $("<img>").addClass("gamebox");
