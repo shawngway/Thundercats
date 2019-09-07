@@ -22,23 +22,38 @@ $(document).ready(function () {
       }).then(function (response) {
 
         console.log(response.results)
+        $("#placeholder").css({"display": "none"})
 
         for (i = 0; i < response.results.length; i++) {
 
-          console.log(response.results[i].name)
+          var cover = $("<img class='cover'>")
+
+
+          
+          console.log(cover.attr("data-name"))
           
           var cover = $("<img>")
+          var div = $("<div>")
+          var li = $("<li>")
+          
+          
+          div.attr("data-name", response.results[i].name)
 
-          cover.attr("class", 'uk-panel')
+          div.attr("class", 'uk-panel active')
 
-          cover.attr("data-toggle", 'modal')
+          div.attr("data-toggle", 'modal')
 
-          cover.attr("data-target", '#gameModal')
+          div.attr("data-target", '#gameModal')
 
           cover.attr("src", response.results[i].short_screenshots[0].image)
 
-          $("#gameSugg").append("<li>").append("<div>").append(cover)
 
+          $("#gameSugg").append(li)
+          $(li).append(div)
+          $(div).append(cover)
+
+
+          
         }
       })
 
@@ -66,13 +81,13 @@ $(document).ready(function () {
 
   //appends divs to game area
 
-  var gameImage = "picture"//cover
+  // var gameImage = "picture"//cover
 
-  var gameTitle = "name"//game name
+  // var gameTitle = "name"//game name
 
-  var gameRating = "rating"//game rating
+  // var gameRating = "rating"//game rating
 
-  var gameBox = $("<img>").addClass("gamebox");
+  // var gameBox = $("<img>").addClass("gamebox");
 
 
   // Example queryURL for Giphy API
@@ -82,13 +97,15 @@ $(document).ready(function () {
   
   function gameSearch() {
 
+    console.log($(this).attr("data-name"))
+    var metaName = $(this).attr("data-name")
     $.ajax({
       url: queryURL,
       method: "POST",
       headers: {
         "user-key": "d61ece206f9dedf20a9aa373ffa29739"
       },
-      data: 'search "halo 2"; fields *;'
+      data: 'search ' + ' " '+ metaName + ' " ' + '; fields *;'
       //where rating > 99;fields name, category, cover, platforms, videos; limit 4; 
     }).then(function (response) {
       // $.ajax({
@@ -105,8 +122,8 @@ $(document).ready(function () {
       // }
       gameById(response[0].id)
         .then(function (game) {
-          $("body").append(`<li>${game[0].name}</li>`)
-          $("body").append(`<li>${game[0].url}</li>`)
+          $("#gameInfo").html(`<li>${game[0].name}</li>`)
+          $("#gameInfo").append("<li><a href='" + game[0].url + "'>Game Info</a></li>")
 
           console.log(game)
         })
@@ -130,7 +147,7 @@ $(document).ready(function () {
     })
   }
 
-  $(document).on("click", ".cover", gameSearch);
+  $(document).on("click", ".uk-panel", gameSearch);
   // console.log(tool);
   // // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
   // var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
@@ -160,5 +177,6 @@ $(document).ready(function () {
 
 // var gameRating = "rating"//game rating
 
-// var gameBox = $("<img>").addClass("gamebox")
+// var gameBox = $("<img>").addClass("gamebox");
+
 });
