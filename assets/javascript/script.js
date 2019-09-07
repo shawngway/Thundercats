@@ -2,33 +2,62 @@
 var gameTitleInput;
 var genreBeingSearched;
 
-var search = function () {
 
+$("#submitButton").on("click", function (event) { //whenever the submit button is clicked
   event.preventDefault()
-
-  var gameTitleInput = $("#gameInput").val()
-
-  console.log(gameTitleInput)
-
+  gameTitleInput = $("#gameInput").val().trim().replace(/\s/g,'-'); //sets gameTitleInput to text input
   $("#gameInput").val("")
+  if ((gameTitleInput !== "")) { //if gameTitleInput is not null
 
-}
+      $("#invalidTitle").css({"display" : "none"}) //error message is not there
 
-$("#submitButton").on("click", function (e) {
-  event.preventDefault();
-  if (($("#gameInput").val().trim() !== "")) {
-    gameTitleInput = $("#gameInput").val().trim();
-    console.log(gameTitleInput)
-    $("#invalidTitle").css({ "display": "none" })
+      //API
 
+      var queryURL = "https://api.rawg.io/api/games/" + gameTitleInput + "/suggested?page_size=5"
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response) {
+
+        console.log(response.results)
+
+        for (i=0; i<response.results.length; i++) {
+
+          console.log(response.results[i].name)
+
+        var cover = $("<img>")
+
+        cover.attr("class", 'uk-panel')
+
+        cover.attr("data-toggle", 'modal')
+
+        cover.attr("data-target", '#gameModal')
+
+        cover.attr("src", response.results[i].short_screenshots[0].image)
+
+        $("#gameSugg").append("<li>").append("<div>").append(cover)
+
+        }
+      })
+      
+      //appending div to the output
   }
   else $("#invalidTitle").css({ "display": "block", "color": "red", "margin-top": "10px" });       //error message appears if form isn't filled out properly
 
 })
 
-$(".genre-buttons").on("click", "button", function (event) {
+
+
+
+
+
+
+
+
+
+$(".genre-buttons").on("click", "button", function (){ //whenever a genre button is clicked
   console.log("chicken")
-  console.log(this)
   genreBeingSearched = this.id
 
   console.log(genreBeingSearched)
@@ -123,3 +152,10 @@ $(document).on("click", "button", gameSearch);
 // ends appends to game area
 
 $(document).on("click", "#search", search) //on click of the sumbit button, calls the search function
+// var gameImage = "picture"//cover
+
+// var gameTitle = "name"//game name
+
+// var gameRating = "rating"//game rating
+
+// var gameBox = $("<img>").addClass("gamebox");
