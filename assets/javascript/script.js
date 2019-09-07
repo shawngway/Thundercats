@@ -22,31 +22,33 @@ $(document).ready(function () {
       }).then(function (response) {
 
         console.log(response.results)
+        $("#placeholder").css({"display": "none"})
 
         for (i = 0; i < response.results.length; i++) {
 
-          var cover = $("<img class='cover'>")
+          var cover = $("<img>")
 
-          cover.attr("data-name", response.results[i].name)
 
           console.log(cover.attr("data-name"))
+          var cover = $("<img>")
+          var div = $("<div>")
+          var li = $("<li>")
 
-          cover.attr("data-toggle", 'modal')
+          div.attr("data-name", response.results[i].name)
 
-          cover.attr("data-target", '#gameModal')
+          div.attr("class", 'uk-panel active')
+
+          div.attr("data-toggle", 'modal')
+
+          div.attr("data-target", '#gameModal')
 
           cover.attr("src", response.results[i].short_screenshots[0].image)
 
-          var listCover = $("<li>")
+          $("#gameSugg").append(li)
+          $(li).append(div)
+          $(div).append(cover)
 
-          var divCover = $("<div class='uk-panel'>")
-
-          divCover.append(cover)
-
-          listCover.append(divCover)
-
-          $("#gameSugg").append(listCover)
-
+          
         }
       })
 
@@ -74,13 +76,13 @@ $(document).ready(function () {
 
   //appends divs to game area
 
-  var gameImage = "picture"//cover
+  // var gameImage = "picture"//cover
 
-  var gameTitle = "name"//game name
+  // var gameTitle = "name"//game name
 
-  var gameRating = "rating"//game rating
+  // var gameRating = "rating"//game rating
 
-  var gameBox = $("<img>").addClass("gamebox");
+  // var gameBox = $("<img>").addClass("gamebox");
 
 
   // Example queryURL for Giphy API
@@ -89,7 +91,7 @@ $(document).ready(function () {
   var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
 
   function gameSearch() {
-
+    console.log(this)
     console.log($(this).attr("data-name"))
     var metaName = $(this).attr("data-name")
     $.ajax({
@@ -140,7 +142,7 @@ $(document).ready(function () {
     })
   }
 
-  $(document).on("click", ".cover", gameSearch);
+  $(document).on("click", ".uk-panel", gameSearch);
   // console.log(tool);
   // // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
   // var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
@@ -170,5 +172,6 @@ $(document).ready(function () {
 
 // var gameRating = "rating"//game rating
 
-// var gameBox = $("<img>").addClass("gamebox")
+// var gameBox = $("<img>").addClass("gamebox");
+
 });
