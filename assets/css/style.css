@@ -10,3 +10,27 @@ body {
 #invalidTitle{
     display: none;
 }
+body {
+    background-color: #E9ECEF;
+}
+
+.btn-dark:hover {
+    background-color: #990100;
+
+}
+
+#invalidTitle{
+    display: none;
+}
+
+body {margin:2rem;}
+
+.form-rounded {
+border-radius: 1rem;
+}
+
+.btn {
+    margin-left: 10px;
+    margin-right: 10px;
+  border-radius: 40px;
+}
