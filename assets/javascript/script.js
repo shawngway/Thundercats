@@ -101,25 +101,14 @@ $(document).ready(function () {
         "user-key": "d61ece206f9dedf20a9aa373ffa29739"
       },
       data: 'search ' + ' " '+ metaName + ' " ' + '; fields *;'
-      //where rating > 99;fields name, category, cover, platforms, videos; limit 4; 
+       
     }).then(function (response) {
-      // $.ajax({
-      //   url: queryURL,
-      //   method: "POST",
-      //   headers: {
-      //     "user-key": "d61ece206f9dedf20a9aa373ffa29739"
-      //   },
-      //   data: "fields *; where id = " + response[0].id + ";"
-      // }).then(function (pickles){
-      //   console.log(pickles)
-      // });
-      // for (var i = 0; i < response.length; i++) {
-      // }
+    
       gameById(response[0].id)
         .then(function (game) {
-          $("#gameInfo").html(`<li>${game[0].name}</li>`)
-          $("#gameInfo").append("<li><a href='" + game[0].url + "'>Game Info</a></li>")
-
+          $("#gameInfo").html(`<p>${game[0].name}</p>`)
+          $("#gameInfo").append("<iframe width=100 height=100 src=" + game[0].url + " </iframe>")
+          
           console.log(game)
         })
 
