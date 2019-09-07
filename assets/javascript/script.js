@@ -1,3 +1,4 @@
+$(document).ready(function () {
 //global variables
 var gameTitleInput;
 var genreBeingSearched;
