@@ -57,7 +57,7 @@ function gameSearch() {
     headers: {
       "user-key": "d61ece206f9dedf20a9aa373ffa29739"
     },
-    data: "where rating > 98;"
+    data: "where rating > 99;fields name, category, cover, platforms, videos; limit 4; "
   }).then(function (response) {
     // $.ajax({
     //   url: queryURL,
@@ -73,7 +73,8 @@ function gameSearch() {
     for (var i = 0; i < response.length; i++) {
       gameById(response[i].id)
         .then(function (game) {
-          $("body").append(`<p>${game[0].name}</p>`)
+          $("#gameSugg").append(`<p>${game[0].name}</p>`)
+          $("#gameSugg").append(`<p>${game[0].url}</p>`)
           console.log(game)
         })
     }
@@ -84,6 +85,7 @@ function gameSearch() {
     console.error(textStatus)
   });
 };
+
 
 function gameById(id) {
   return $.ajax({
@@ -97,27 +99,27 @@ function gameById(id) {
 }
 
 $(document).on("click", "button", gameSearch);
-console.log(tool);
-// var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
-var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
-$.ajax({
-  url: queryURL,
-  method: "POST",
-  headers: {
-    "user-key": "d61ece206f9dedf20a9aa373ffa29739"
-  },
-  data: "fields *; where id = 104945;"
-}).then(function (response) {
-  console.log(response);
-  var title = response[0].name
-  console.log(title)
-  $("#exampleModalLabel").append(title + " Info")
-}).fail(function (jqXHR, textStatus) {
-  console.error(textStatus)
-});
+// console.log(tool);
+// // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
+// var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
+// $.ajax({
+//   url: queryURL,
+//   method: "POST",
+//   headers: {
+//     "user-key": "d61ece206f9dedf20a9aa373ffa29739"
+//   },
+//   data: "fields *; where id = 104945;"
+// }).then(function (response) {
+//   console.log(response);
+//   var title = response[0].name
+//   console.log(title)
+//   $("#exampleModalLabel").append(title + " Info")
+// }).fail(function (jqXHR, textStatus) {
+//   console.error(textStatus)
+// });
 
 
-//ends appends to game area
+// ends appends to game area
 
 $(document).on("click", "#search", search) //on click of the sumbit button, calls the search function
 
