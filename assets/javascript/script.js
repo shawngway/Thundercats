@@ -73,3 +73,4 @@ $(".genre-buttons").on("click", "button", function (){ //whenever a genre button
 // var gameRating = "rating"//game rating
 
 // var gameBox = $("<img>").addClass("gamebox");
+});
