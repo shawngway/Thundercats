@@ -23,6 +23,9 @@ body {
     display: none;
 }
 
+#placeholder {
+    display: none;
+}
 
 .form-rounded {
 border-radius: 1rem;
