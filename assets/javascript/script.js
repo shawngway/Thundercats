@@ -29,7 +29,7 @@ $("#submitButton").on("click", function (event) { //whenever the submit button i
 
         var cover = $("<img>")
 
-        cover.attr("class", 'uk-panel')
+        // cover.attr("class", 'uk-panel')
 
         cover.attr("data-toggle", 'modal')
 
@@ -37,7 +37,7 @@ $("#submitButton").on("click", function (event) { //whenever the submit button i
 
         cover.attr("src", response.results[i].short_screenshots[0].image)
 
-        $("#gameSugg").append("<li>").append("<div>").append(cover)
+        $("#gameSugg").append("<li>").append("<div class='uk-panel'>").append(cover)
 
         }
       })
@@ -73,3 +73,4 @@ $(".genre-buttons").on("click", "button", function (){ //whenever a genre button
 // var gameRating = "rating"//game rating
 
 // var gameBox = $("<img>").addClass("gamebox");
+});
