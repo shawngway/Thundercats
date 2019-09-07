@@ -2,33 +2,62 @@
 var gameTitleInput;
 var genreBeingSearched;
 
-var search = function() {
-   
-    event.preventDefault()
 
-    var gameTitleInput = $("#gameInput").val()
+$("#submitButton").on("click", function (event) { //whenever the submit button is clicked
+  event.preventDefault()
+  gameTitleInput = $("#gameInput").val().trim().replace(/\s/g,'-'); //sets gameTitleInput to text input
+  $("#gameInput").val("")
+  if ((gameTitleInput !== "")) { //if gameTitleInput is not null
 
-    console.log(gameTitleInput)
+      $("#invalidTitle").css({"display" : "none"}) //error message is not there
 
-    $("#gameInput").val("")
+      //API
 
-}
+      var queryURL = "https://api.rawg.io/api/games/" + gameTitleInput + "/suggested?page_size=5"
 
-$("#submitButton").on("click", function (e) {
-  event.preventDefault();
-  if (($("#gameInput").val().trim() !== "")) {
-      gameTitleInput = $("#gameInput").val().trim();
-      console.log(gameTitleInput)
-      $("#invalidTitle").css({"display" : "none"})
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response) {
+
+        console.log(response.results)
+
+        for (i=0; i<response.results.length; i++) {
+
+          console.log(response.results[i].name)
+
+        var cover = $("<img>")
+
+        cover.attr("class", 'uk-panel')
+
+        cover.attr("data-toggle", 'modal')
+
+        cover.attr("data-target", '#gameModal')
+
+        cover.attr("src", response.results[i].short_screenshots[0].image)
+
+        $("#gameSugg").append("<li>").append("<div>").append(cover)
+
+        }
+      })
       
+      //appending div to the output
   }
   else $("#invalidTitle").css({"display": "block", "color": "red", "margin-top" : "10px"});       //error message appears if form isn't filled out properly
 
 })
 
-$(".genre-buttons").on("click", "button", function (event){
+
+
+
+
+
+
+
+
+
+$(".genre-buttons").on("click", "button", function (){ //whenever a genre button is clicked
   console.log("chicken")
-  console.log(this)
   genreBeingSearched = this.id
 
   console.log(genreBeingSearched)
@@ -36,89 +65,10 @@ $(".genre-buttons").on("click", "button", function (event){
 
 //appends divs to game area
 
-var gameImage = "picture"//cover
+// var gameImage = "picture"//cover
 
-var gameTitle = "name"//game name
+// var gameTitle = "name"//game name
 
-var gameRating = "rating"//game rating
+// var gameRating = "rating"//game rating
 
-var gameBox = $("<img>").addClass("gamebox");
-
-
-// Example queryURL for Giphy API
-
-// var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
-var tool = "test";
-var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
-
-function gameSearch() {
-  $.ajax({
-    url: queryURL,
-    method: "POST",
-    headers: {
-      "user-key": "d61ece206f9dedf20a9aa373ffa29739"
-    },
-    data: "where rating > 98;"
-  }).then(function (response) {
-    // $.ajax({
-    //   url: queryURL,
-    //   method: "POST",
-    //   headers: {
-    //     "user-key": "d61ece206f9dedf20a9aa373ffa29739"
-    //   },
-    //   data: "fields *; where id = " + response[0].id + ";"
-    // }).then(function (pickles){
-    //   console.log(pickles)
-    // });
-    
-    for (var i = 0; i < response.length; i++) {
-      gameById(response[i].id)
-      .then (function (game) {
-        $("body").append(`<p>${game[0].name}</p>`)
-        console.log(game)
-      })
-    }
-
-    console.log(response);
-    console.log(response[0]);
-  }).fail(function (jqXHR, textStatus) {
-    console.error(textStatus)
-  });
-};
-
-function gameById(id) {
-  return $.ajax({
-    url: queryURL,
-    method: "POST",
-    headers: {
-      "user-key": "d61ece206f9dedf20a9aa373ffa29739"
-    },
-    data: "fields *; where id = " + id + ";"
-  })
-}
-
-$(document).on("click", "button", gameSearch);
-console.log(tool);
-
-    // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
-    var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
-    $.ajax({
-      url: queryURL,
-      method: "POST",
-      headers: {
-        "user-key": "d61ece206f9dedf20a9aa373ffa29739"
-      },
-      data: "fields *; where id = 104945;"
-    }).then(function(response) {
-      console.log(response);
-      var title = response[0].name
-      console.log(title)
-      $("#exampleModalLabel").append(title + " Info")
-    }).fail(function(jqXHR, textStatus) { 
-      console.error(textStatus)
-    });
-
-
-//ends appends to game area
-
-$(document).on("click", "#search", search) //on click of the sumbit button, calls the search function
+// var gameBox = $("<img>").addClass("gamebox");
