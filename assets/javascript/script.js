@@ -31,10 +31,6 @@ $("#submitButton").on("click", function (e) {
 
 })
 
-$("#gameSugg").on("click", "li", function(event){
-  
-})
-
 $(".genre-buttons").on("click", "button", function (event){
   console.log("chicken")
   console.log(this)
