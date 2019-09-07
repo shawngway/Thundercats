@@ -57,7 +57,8 @@ function gameSearch() {
     headers: {
       "user-key": "d61ece206f9dedf20a9aa373ffa29739"
     },
-    data: "where rating > 99;fields name, category, cover, platforms, videos; limit 4; "
+    data: 'search "halo 2"; fields *;'
+    //where rating > 99;fields name, category, cover, platforms, videos; limit 4; 
   }).then(function (response) {
     // $.ajax({
     //   url: queryURL,
@@ -69,15 +70,15 @@ function gameSearch() {
     // }).then(function (pickles){
     //   console.log(pickles)
     // });
-
-    for (var i = 0; i < response.length; i++) {
-      gameById(response[i].id)
-        .then(function (game) {
-          $("#gameSugg").append(`<p>${game[0].name}</p>`)
-          $("#gameSugg").append(`<p>${game[0].url}</p>`)
-          console.log(game)
-        })
-    }
+    // for (var i = 0; i < response.length; i++) {
+    // }
+    gameById(response[0].id)
+      .then(function (game) {
+        $("body").append(`<li>${game[0].name}</li>`)
+        $("body").append(`<li>${game[0].url}</li>`)
+        
+        console.log(game)
+      })
 
     console.log(response);
     console.log(response[0]);
