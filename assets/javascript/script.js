@@ -22,31 +22,38 @@ $(document).ready(function () {
       }).then(function (response) {
 
         console.log(response.results)
+        $("#placeholder").css({"display": "none"})
 
         for (i = 0; i < response.results.length; i++) {
 
           var cover = $("<img class='cover'>")
 
+
           cover.attr("data-name", response.results[i].name)
 
           console.log(cover.attr("data-name"))
 
-          cover.attr("data-toggle", 'modal')
+          var cover = $("<img>")
+          var div = $("<div>")
+          var li = $("<li>")
 
-          cover.attr("data-target", '#gameModal')
+
+
+          div.attr("class", 'uk-panel active')
+
+          div.attr("data-toggle", 'modal')
+
+          div.attr("data-target", '#gameModal')
 
           cover.attr("src", response.results[i].short_screenshots[0].image)
 
-          var listCover = $("<li>")
 
-          var divCover = $("<div class='uk-panel'>")
+          $("#gameSugg").append(li)
+          $(li).append(div)
+          $(div).append(cover)
 
-          divCover.append(cover)
 
-          listCover.append(divCover)
-
-          $("#gameSugg").append(listCover)
-
+          
         }
       })
 
@@ -170,5 +177,6 @@ $(document).ready(function () {
 
 // var gameRating = "rating"//game rating
 
-// var gameBox = $("<img>").addClass("gamebox")
+// var gameBox = $("<img>").addClass("gamebox");
+
 });
