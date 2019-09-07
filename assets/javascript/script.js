@@ -29,7 +29,8 @@ $(document).ready(function () {
 
           var cover = $("<img>")
 
-          cover.attr("class", 'uk-panel')
+
+        // cover.attr("class", 'uk-panel')
 
           cover.attr("data-toggle", 'modal')
 
@@ -37,7 +38,8 @@ $(document).ready(function () {
 
           cover.attr("src", response.results[i].short_screenshots[0].image)
 
-          $("#gameSugg").append("<li>").append("<div>").append(cover)
+        $("#gameSugg").append("<li>").append("<div class='uk-panel'>").append(cover)
+
 
         }
       })
@@ -159,5 +161,6 @@ $(document).ready(function () {
 
 // var gameRating = "rating"//game rating
 
-// var gameBox = $("<img>").addClass("gamebox")
+// var gameBox = $("<img>").addClass("gamebox");
+
 });
