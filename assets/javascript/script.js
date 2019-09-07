@@ -32,6 +32,7 @@ $(document).ready(function () {
           var div = $("<div>")
           var li = $("<li>")
 
+
           div.attr("class", 'uk-panel active')
 
           div.attr("data-toggle", 'modal')
@@ -166,4 +167,5 @@ $(document).ready(function () {
 // var gameRating = "rating"//game rating
 
 // var gameBox = $("<img>").addClass("gamebox");
+
 });
