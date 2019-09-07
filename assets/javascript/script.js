@@ -22,25 +22,30 @@ $(document).ready(function () {
       }).then(function (response) {
 
         console.log(response.results)
+        $("#placeholder").css({"display": "none"})
 
         for (i = 0; i < response.results.length; i++) {
 
           console.log(response.results[i].name)
 
           var cover = $("<img>")
+          var div = $("<div>")
+          var li = $("<li>")
 
 
-        // cover.attr("class", 'uk-panel')
+          div.attr("class", 'uk-panel active')
 
-          cover.attr("data-toggle", 'modal')
+          div.attr("data-toggle", 'modal')
 
-          cover.attr("data-target", '#gameModal')
+          div.attr("data-target", '#gameModal')
 
           cover.attr("src", response.results[i].short_screenshots[0].image)
 
-        $("#gameSugg").append("<li>").append("<div class='uk-panel'>").append(cover)
+          $("#gameSugg").append(li)
+          $(li).append(div)
+          $(div).append(cover)
 
-
+          
         }
       })
 
