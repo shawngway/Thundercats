@@ -26,7 +26,7 @@ $(document).ready(function () {
         for (i = 0; i < response.results.length; i++) {
 
           console.log(response.results[i].name)
-
+          
           var cover = $("<img>")
 
           cover.attr("class", 'uk-panel')
@@ -79,8 +79,9 @@ $(document).ready(function () {
   // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
   var tool = "test";
   var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
-
+  
   function gameSearch() {
+
     $.ajax({
       url: queryURL,
       method: "POST",
@@ -129,7 +130,7 @@ $(document).ready(function () {
     })
   }
 
-  $(document).on("click", "button", gameSearch);
+  $(document).on("click", ".cover", gameSearch);
   // console.log(tool);
   // // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
   // var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
