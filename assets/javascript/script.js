@@ -46,8 +46,16 @@ var gameBox = $("<img>").addClass("gamebox");
 var tool = "test";
 var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
 
-function gameSearch() {
-  $.ajax({
+$.ajax({
+  url: "https://api.rawg.io/api/games/worms-armageddon",
+  method: "GET"
+})
+  // After data comes back from the request
+  .then(function (response) {}
+
+
+//function gameSearch() {
+  //$.ajax({
     url: queryURL,
     method: "POST",
     headers: {
