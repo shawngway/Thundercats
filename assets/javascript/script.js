@@ -177,6 +177,12 @@ $(document).ready(function () {
 
 // var gameRating = "rating"//game rating
 
+
 // var gameBox = $("<img>").addClass("gamebox");
+
+// var gameBox = $("<img>").addClass("gamebox")
+
+// var gameBox = $("<img>").addClass("gamebox");
+
 
 });
