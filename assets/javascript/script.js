@@ -29,15 +29,15 @@ $(document).ready(function () {
           var cover = $("<img class='cover'>")
 
 
-          cover.attr("data-name", response.results[i].name)
-
+          
           console.log(cover.attr("data-name"))
-
+          
           var cover = $("<img>")
           var div = $("<div>")
           var li = $("<li>")
-
-
+          
+          
+          div.attr("data-name", response.results[i].name)
 
           div.attr("class", 'uk-panel active')
 
@@ -81,20 +81,20 @@ $(document).ready(function () {
 
   //appends divs to game area
 
-  var gameImage = "picture"//cover
+  // var gameImage = "picture"//cover
 
-  var gameTitle = "name"//game name
+  // var gameTitle = "name"//game name
 
-  var gameRating = "rating"//game rating
+  // var gameRating = "rating"//game rating
 
-  var gameBox = $("<img>").addClass("gamebox");
+  // var gameBox = $("<img>").addClass("gamebox");
 
 
   // Example queryURL for Giphy API
   // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
   var tool = "test";
   var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
-
+  
   function gameSearch() {
 
     console.log($(this).attr("data-name"))
@@ -147,7 +147,7 @@ $(document).ready(function () {
     })
   }
 
-  $(document).on("click", ".cover", gameSearch);
+  $(document).on("click", ".uk-panel", gameSearch);
   // console.log(tool);
   // // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
   // var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
