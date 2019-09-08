@@ -157,6 +157,8 @@ $(document).ready(function () {
       auth.createUserWithEmailAndPassword(userEmail, userPassword).then(cred => {
         console.log(cred.user)
         $("#closeSignUp").click();
+        $("#signUpInputPassword1").val("");
+        $("#signUpInputEmail1").val("");
       });
 
 
