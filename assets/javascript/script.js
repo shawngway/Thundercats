@@ -22,21 +22,21 @@ $(document).ready(function () {
       }).then(function (response) {
 
         console.log(response.results)
-        $("#placeholder").css({"display": "none"})
+        $("#placeholder").css({ "display": "none" })
 
         for (i = 0; i < response.results.length; i++) {
 
           var cover = $("<img class='cover'>")
 
 
-          
+
           console.log(cover.attr("data-name"))
-          
+
           var cover = $("<img>")
           var div = $("<div>")
           var li = $("<li>")
-          
-          
+
+
           div.attr("data-name", response.results[i].name)
 
           div.attr("class", 'uk-panel active')
@@ -53,7 +53,7 @@ $(document).ready(function () {
           $(div).append(cover)
 
 
-          
+
         }
       })
 
@@ -94,7 +94,7 @@ $(document).ready(function () {
   // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
   var tool = "test";
   var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
-  
+
   function gameSearch() {
 
     console.log($(this).attr("data-name"))
@@ -105,7 +105,7 @@ $(document).ready(function () {
       headers: {
         "user-key": "d61ece206f9dedf20a9aa373ffa29739"
       },
-      data: 'search ' + ' " '+ metaName + ' " ' + '; fields *;'
+      data: 'search ' + ' " ' + metaName + ' " ' + '; fields *;'
       //where rating > 99;fields name, category, cover, platforms, videos; limit 4; 
     }).then(function (response) {
       // $.ajax({
@@ -147,6 +147,57 @@ $(document).ready(function () {
     })
   }
 
+  //////////////////////////////////////<modals> and signing in and out////////////////////////////////////////////////////////
+  //getting users signed up
+  $("#signUpButton").on("click", function (event) {
+    event.preventDefault()
+    var userPassword = $("#signUpInputPassword1").val().trim();   //saving user's password and email as a variable
+    var userEmail = $("#signUpInputEmail1").val().trim();
+    if (userEmail !== "" && userPassword !== "") {              //if passwords aren't blank and are valid
+      $("#signUpError").html("")
+      auth.createUserWithEmailAndPassword(userEmail, userPassword).then(cred => { //create the user in the database with the username and password equal to what the user input was
+        $("#closeSignUp").click();
+        $("#signUpInputPassword1").val("");       //closes and resets the fields in the sign up modal
+        $("#signUpInputEmail1").val("");
+      });
+
+
+    }
+    else $("#signUpError").html("One or more fields are invalid").css({ "color": "red" })   //if input is messed up red words saying input values are invalid comes up
+  });
+
+  //letting users sign in if not already
+  $("#logInButton").on("click", function (event) {
+    var email = $("#signInInputEmail1").val().trim();
+    var password = $("#signInInputPassword1").val().trim();
+    event.preventDefault();
+
+    auth.signInWithEmailAndPassword(email, password).then(cred => {
+      console.log(cred.user)
+
+      $("#logInClose").click();
+      $("#signInInputPassword1").val("");       //closes and resets the fields in the sign in modal
+      $("#signInInputEmail1").val("");
+    })
+
+  });
+
+  //users can sign out
+  $("#userLogout").on("click", function (event) {
+    auth.signOut().then(() => {           //when users click log out it signs them out and afterwards its promise is to console.log a message
+      console.log("user has signed out");
+    })
+  });
+
+
+
+
+
+
+
+
+  ///////////////////////////////////////</modals>////////////////////////////////////////////////////////////////
+
   $(document).on("click", ".uk-panel", gameSearch);
   // console.log(tool);
   // // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
@@ -170,19 +221,19 @@ $(document).ready(function () {
 
   // ends appends to game area
 
-//on click of the sumbit button, calls the search function
-// var gameImage = "picture"//cover
+  //on click of the sumbit button, calls the search function
+  // var gameImage = "picture"//cover
 
-// var gameTitle = "name"//game name
+  // var gameTitle = "name"//game name
 
-// var gameRating = "rating"//game rating
+  // var gameRating = "rating"//game rating
 
 
-// var gameBox = $("<img>").addClass("gamebox");
+  // var gameBox = $("<img>").addClass("gamebox");
 
-// var gameBox = $("<img>").addClass("gamebox")
+  // var gameBox = $("<img>").addClass("gamebox")
 
-// var gameBox = $("<img>").addClass("gamebox");
+  // var gameBox = $("<img>").addClass("gamebox");
 
 
 });
