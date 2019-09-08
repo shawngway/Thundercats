@@ -1,4 +1,46 @@
 $(document).ready(function () {
+
+  // <!-- TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#config-web-app -->
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDUfIh4HelMGbMhdeYmKl-D97pC2jJYql0",
+    authDomain: "next-game-dc90c.firebaseapp.com",
+    databaseURL: "https://next-game-dc90c.firebaseio.com",
+    projectId: "next-game-dc90c",
+    appId: "1:446183546506:web:9105e15a8b1f86a8ac1773"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  const auth = firebase.auth();    //firebase functions saved as variables
+  const db = firebase.firestore();
+
+
+/////////////////////////////////////user authentication changes//////////////////////////////////////////////
+auth.onAuthStateChanged(user => {
+  if (user) {
+    console.log("user logged in: ", user)
+    $("#accountNav").show();
+    $("#libraryNav").show();
+    $("#userLogout").show();
+    $("#signInNav").hide();
+    $("#signUpNav").hide();
+
+  } else{
+    console.log("user logged out")
+    $("#signInNav").show();
+    $("#signUpNav").show();
+    $("#accountNav").hide();
+    $("#libraryNav").hide();
+    $("#userLogout").hide();
+  }
+})
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //global variables
   var gameTitleInput;
   var genreBeingSearched;
@@ -184,10 +226,8 @@ $(document).ready(function () {
 
   //users can sign out
   $("#userLogout").on("click", function (event) {
-    auth.signOut().then(() => {           //when users click log out it signs them out and afterwards its promise is to console.log a message
-      console.log("user has signed out");
+    auth.signOut();
     })
-  });
 
 
 
