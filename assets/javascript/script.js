@@ -165,9 +165,26 @@ $(document).ready(function () {
     }
     else $("#signUpError").html("One or more fields are invalid").css({ "color": "red" })   //if input is messed up red words saying input values are invalid comes up
   });
+
+  //letting users sign in if not already
+  $("#logInButton").on("click", function (event) {
+    var email = $("#signInInputEmail1").val().trim();
+    var password = $("#signInInputPassword1").val().trim();
+    event.preventDefault();
+
+    auth.signInWithEmailAndPassword(email, password).then(cred => {
+      console.log(cred.user)
+
+      $("#logInClose").click();
+      $("#signInInputPassword1").val("");       //closes and resets the fields in the sign in modal
+      $("#signInInputEmail1").val("");
+    })
+
+  });
+
   //users can sign out
   $("#userLogout").on("click", function (event) {
-    auth.signOut().then(()=>{           //when users click log out it signs them out and afterwards its promise is to console.log a message
+    auth.signOut().then(() => {           //when users click log out it signs them out and afterwards its promise is to console.log a message
       console.log("user has signed out");
     })
   });
