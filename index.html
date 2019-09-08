@@ -35,6 +35,127 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Next Game</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" data-toggle='modal' data-target='#accountModal' href="#">Account <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle='modal' data-target='#libraryModal' href="#">Library</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle='modal' data-target='#signInModal' href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle='modal' data-target='#signUpModal' href="#">Signup</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Next Game Sign Up</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="sign-up-form">
+                    <div class="form-group">
+                        <label for="signUpInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="signUpInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="signUpInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="signUpInputPassword1" placeholder="Password">
+                    </div>
+                    <p id="signUpError"></p>
+                    <button type="submit" class="btn btn-primary" id="signUpButton">Submit</button>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" id="closeSignUp" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Next Game Sign In</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="sign-in-form">
+                    <div class="form-group">
+                        <label for="signInInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="signInInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="signInInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="signInInputPassword1" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">My Account Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="account-information"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="libraryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">My Library</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="library-information"></div>
+            </div>
+        </div>
+    </div>
     <!-- container making the page mobile responsive -->
     <div class="container-fluid">
         <!-- header, we can put title here, description if we want, cool logo if we create one -->
@@ -65,7 +186,8 @@
                             value="option1">
                         <label class="form-check-label" for="pcRadio">PC</label>
                     </div>
-                    <small id="inputRules" class="form-text text-muted">Enter a game you love and use the button below
+                    <small id="inputRules" class="form-text text-muted">Enter a game you love and use the button
+                        below
                         to
                         get some great recommendations from us!</small>
 
@@ -84,16 +206,18 @@
             <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@m uk-grid" id="gameSugg">
                 <li id="placeholder">
                     <div class="uk-panel" data-toggle="modal" data-target="#gameModal">
-                       <img src="https://board.sonicstadium.org/applications/core/interface/imageproxy/imageproxy.php?img=https://images-na.ssl-images-amazon.com/images/I/71y3rzfuUlL._AC_SX430_.jpg&key=ab4a6028b234a8830fa824e9cacef82d655639ba753ef80e8d35a03441685b9c" alt="">
+                        <img src="https://board.sonicstadium.org/applications/core/interface/imageproxy/imageproxy.php?img=https://images-na.ssl-images-amazon.com/images/I/71y3rzfuUlL._AC_SX430_.jpg&key=ab4a6028b234a8830fa824e9cacef82d655639ba753ef80e8d35a03441685b9c"
+                            alt="">
                     </div>
                 </li>
             </ul>
-        
-            <a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+
+            <a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous
+                uk-slider-item="previous"></a>
             <a class="uk-position-center-right uk-position-small" href="#" uk-slidenav-next uk-slider-item="next"></a>
-        
+
         </div>
-        
+
         <div class="modal fade" id="gameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -105,7 +229,7 @@
                         </button>
                     </div>
                     <div class="modal-body" id="gameInfo">
-                    
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
@@ -116,6 +240,30 @@
     </div>
 
     <!-- <button>click</button> -->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDUfIh4HelMGbMhdeYmKl-D97pC2jJYql0",
+    authDomain: "next-game-dc90c.firebaseapp.com",
+    databaseURL: "https://next-game-dc90c.firebaseio.com",
+    projectId: "next-game-dc90c",
+    appId: "1:446183546506:web:9105e15a8b1f86a8ac1773"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+</script>
 
     <script src="assets/javascript/script.js"></script>
 

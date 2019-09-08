@@ -22,21 +22,21 @@ $(document).ready(function () {
       }).then(function (response) {
 
         console.log(response.results)
-        $("#placeholder").css({"display": "none"})
+        $("#placeholder").css({ "display": "none" })
 
         for (i = 0; i < response.results.length; i++) {
 
           var cover = $("<img class='cover'>")
 
 
-          
+
           console.log(cover.attr("data-name"))
-          
+
           var cover = $("<img>")
           var div = $("<div>")
           var li = $("<li>")
-          
-          
+
+
           div.attr("data-name", response.results[i].name)
 
           div.attr("class", 'uk-panel active')
@@ -53,7 +53,7 @@ $(document).ready(function () {
           $(div).append(cover)
 
 
-          
+
         }
       })
 
@@ -94,7 +94,7 @@ $(document).ready(function () {
   // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
   var tool = "test";
   var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
-  
+
   function gameSearch() {
 
     console.log($(this).attr("data-name"))
@@ -105,7 +105,7 @@ $(document).ready(function () {
       headers: {
         "user-key": "d61ece206f9dedf20a9aa373ffa29739"
       },
-      data: 'search ' + ' " '+ metaName + ' " ' + '; fields *;'
+      data: 'search ' + ' " ' + metaName + ' " ' + '; fields *;'
       //where rating > 99;fields name, category, cover, platforms, videos; limit 4; 
     }).then(function (response) {
       // $.ajax({
@@ -147,6 +147,32 @@ $(document).ready(function () {
     })
   }
 
+  //////////////////////////////////////<modals>////////////////////////////////////////////////////////
+  $("#signUpButton").on("click", function (event) {
+    event.preventDefault()
+    var userPassword = $("#signUpInputPassword1").val().trim();
+    var userEmail = $("#signUpInputEmail1").val().trim();
+    if (userEmail !== "" && userPassword !== "") {
+      $("#signUpError").html("")
+      auth.createUserWithEmailAndPassword(userEmail, userPassword).then(cred => {
+        console.log(cred.user)
+        $("#closeSignUp").click();
+      });
+
+
+    }
+    else $("#signUpError").html("One or more fields are invalid").css({ "color": "red" })
+  })
+
+
+
+
+
+
+
+
+  ///////////////////////////////////////</modals>////////////////////////////////////////////////////////////////
+
   $(document).on("click", ".uk-panel", gameSearch);
   // console.log(tool);
   // // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
@@ -170,19 +196,19 @@ $(document).ready(function () {
 
   // ends appends to game area
 
-//on click of the sumbit button, calls the search function
-// var gameImage = "picture"//cover
+  //on click of the sumbit button, calls the search function
+  // var gameImage = "picture"//cover
 
-// var gameTitle = "name"//game name
+  // var gameTitle = "name"//game name
 
-// var gameRating = "rating"//game rating
+  // var gameRating = "rating"//game rating
 
 
-// var gameBox = $("<img>").addClass("gamebox");
+  // var gameBox = $("<img>").addClass("gamebox");
 
-// var gameBox = $("<img>").addClass("gamebox")
+  // var gameBox = $("<img>").addClass("gamebox")
 
-// var gameBox = $("<img>").addClass("gamebox");
+  // var gameBox = $("<img>").addClass("gamebox");
 
 
 });
