@@ -147,24 +147,30 @@ $(document).ready(function () {
     })
   }
 
-  //////////////////////////////////////<modals>////////////////////////////////////////////////////////
+  //////////////////////////////////////<modals> and signing in and out////////////////////////////////////////////////////////
+  //getting users signed up
   $("#signUpButton").on("click", function (event) {
     event.preventDefault()
-    var userPassword = $("#signUpInputPassword1").val().trim();
+    var userPassword = $("#signUpInputPassword1").val().trim();   //saving user's password and email as a variable
     var userEmail = $("#signUpInputEmail1").val().trim();
-    if (userEmail !== "" && userPassword !== "") {
+    if (userEmail !== "" && userPassword !== "") {              //if passwords aren't blank and are valid
       $("#signUpError").html("")
-      auth.createUserWithEmailAndPassword(userEmail, userPassword).then(cred => {
-        console.log(cred.user)
+      auth.createUserWithEmailAndPassword(userEmail, userPassword).then(cred => { //create the user in the database with the username and password equal to what the user input was
         $("#closeSignUp").click();
-        $("#signUpInputPassword1").val("");
+        $("#signUpInputPassword1").val("");       //closes and resets the fields in the sign up modal
         $("#signUpInputEmail1").val("");
       });
 
 
     }
-    else $("#signUpError").html("One or more fields are invalid").css({ "color": "red" })
-  })
+    else $("#signUpError").html("One or more fields are invalid").css({ "color": "red" })   //if input is messed up red words saying input values are invalid comes up
+  });
+  //users can sign out
+  $("#userLogout").on("click", function (event) {
+    auth.signOut().then(()=>{           //when users click log out it signs them out and afterwards its promise is to console.log a message
+      console.log("user has signed out");
+    })
+  });
 
 
 
