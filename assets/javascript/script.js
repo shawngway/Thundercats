@@ -217,20 +217,54 @@ $(document).ready(function () {
 
   $("#libraryNav").on("click", function (event){
     $("#accordion").empty();
+    
     for(var i = 0; i < wishList.length; i++){         //for each set of items in the wishlist array creates a collapsable bootstrap folder to hold data
       var card = $("<div>").attr("class", "card");
-      var cardHead = $("<div>").attr({"class":"card-head", "id":"heading" + (i+1),});
-      card.append(cardHead);
-      var h5 = $("<h5>").attr("class", "mb-0");             //makes a button with the contents equal to the index array that its grabbing the info from
-      cardHead.append(h5);
-      h5.append("<button>" + wishList[i] +"</button>").attr({"class":"btn btn-dark", "data-toggle": "collapse", "data-target":"#collapse" + (i+1), "aria-expanded":"true", "aria-controls": "collapse" + (i+1), "id":wishList[i]});
+      var cardHead = $("<div>").attr({"class":"card-head", "id":"heading cardHead" + (i+1),});
+      card.append(cardHead);             //makes a button with the contents equal to the index array that its grabbing the info from
+      var button = $("<button>").attr({"class":"btn btn-dark btn-sm m-1", "data-toggle": "collapse", "data-target":"#collapse" + (i+1), "aria-expanded":"true", "aria-controls": "collapse" + (i+1), "id":wishList[i].replace(/\s/g, '-')});
+      button.append(wishList[i]);
+      cardHead.append(button);
       var collapse = $("<div>").attr({"id":"collapse" + (i+1), "class": "collapse", "aria-labelledby": "heading" + (i+1), "data-parent":"#accordion"});
-      var cardBody = $("<div>").attr("class", "card-body");
+      var cardBody = $("<div>").attr({"class" : "card-body", "id" : "cardBody" + wishList[i].replace(/\s/g, '-')});
       card.append(collapse);
       collapse.append(cardBody);
       $("#accordion").append(card);
+      var exit = $("<button>").attr({"type":"button", "class":"close", "class":"close", "aria-label":"Close", "id":"deleteGameWishList" + wishList[i].replace(/\s/g, '-')});
+      exit.html("<span aria-hidden='true'>&times;</span>");
+      cardHead.append(exit);
+      // <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="">
+      //<span aria-hidden="true">&times;</span>
+      //</button>
     }
   });
+  
+
+$("#accordion").on("click", "button", function(){
+  
+  var game = this.id
+  $("#cardBody" + game).empty();
+  console.log(this.id)
+  console.log(game)
+  var queryURL = "https://api.rawg.io/api/games/" + game;
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response){
+    currentAccordian = $("#cardBody" + game);
+    var tags = $("<h5>");
+    tags.html("tags: " + response.tags[0].name + " and " + response.tags[1].name);
+    var rating = $("<p>").html(response.metacritic);
+    console.log(tags);
+    //$("#cardbody" + game).append
+    var description = $("<div>").attr({"id":"responseDescription"});
+    description.append(response.description);
+    currentAccordian.append("<strong>Description</strong>: " + response.description);
+    currentAccordian.append(tags);
+    currentAccordian.append("Rating: " + rating);
+    console.log(response);
+  })
+});
 
 
   //game wishlist being populated
@@ -267,6 +301,7 @@ $(document).ready(function () {
   }
 
   localDataPopulatingWishList();
+  console.log(wishList)
 
   $(document).on("click", ".uk-panel", gameSearch);
   // console.log(tool);
