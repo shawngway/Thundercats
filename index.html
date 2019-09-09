@@ -72,11 +72,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Next Game Sign Up</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeSignUp">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="sign-up-form">
+                <form class="m-1" id="sign-up-form">
                     <div class="form-group">
                         <label for="signUpInputEmail1">Email address</label>
                         <input type="email" class="form-control" id="signUpInputEmail1" aria-describedby="emailHelp"
@@ -89,10 +89,9 @@
                         <input type="password" class="form-control" id="signUpInputPassword1" placeholder="Password">
                     </div>
                     <p id="signUpError"></p>
-                    <button type="submit" class="btn btn-primary" id="signUpButton">Submit</button>
                 </form>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" id="closeSignUp" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-dark" id="signUpButton">Submit</button>
                 </div>
             </div>
         </div>
@@ -104,11 +103,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Next Game Sign In</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="logInClose">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="sign-in-form">
+                <form class="m-1" id="sign-in-form">
                     <div class="form-group">
                         <label for="signInInputEmail1">Email address</label>
                         <input type="email" class="form-control" id="signInInputEmail1" aria-describedby="emailHelp"
@@ -120,10 +119,9 @@
                         <label for="signInInputPassword1">Password</label>
                         <input type="password" class="form-control" id="signInInputPassword1" placeholder="Password">
                     </div>
-                    <button type="submit" id="logInButton" class="btn btn-primary">Submit</button>
                 </form>
                 <div class="modal-footer">
-                    <button type="button" id="logInClose" class="btn btn-dark" data-dismiss="modal">Close</button>
+                    <button type="submit" id="logInButton" class="btn btn-dark">Submit</button>
                 </div>
             </div>
         </div>
@@ -230,7 +228,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel gameInfoModal"></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="gameInfoDismissal">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -241,8 +239,8 @@
                     <div class="modal-footer">
                         <p id="wishListError"></p>
                         <button type="button" class="btn btn-dark" id="wishlistButton">Add to Wishlist</button>
-                        <button type="button" class="btn btn-danger" id="gameInfoDismissal"
-                            data-dismiss="modal">Close</button>
+                        <!-- <button type="button" class="btn btn-danger" id="gameInfoDismissal"
+                            data-dismiss="modal">Close</button> -->
                     </div>
                 </div>
             </div>
