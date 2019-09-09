@@ -45,20 +45,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" data-toggle='modal' data-target='#accountModal' href="#">Account <span
-                            class="sr-only">(current)</span></a>
+                    <a class="nav-link" data-toggle='modal' id="accountNav" data-target='#accountModal' href="#">Account
+                        <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle='modal' data-target='#libraryModal' href="#">Library</a>
+                    <a class="nav-link" data-toggle='modal' id="libraryNav" data-target='#libraryModal'
+                        href="#">Wishlist</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle='modal' data-target='#signInModal' href="#">Login</a>
+                    <a class="nav-link" data-toggle='modal' id="signInNav" data-target='#signInModal' href="#">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="userLogout" href="#">Logout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle='modal' data-target='#signUpModal' href="#">Signup</a>
+                    <a class="nav-link" data-toggle='modal' id="signUpNav" data-target='#signUpModal'
+                        href="#">Signup</a>
                 </li>
             </ul>
         </div>
@@ -147,12 +149,16 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">My Library</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">My Wish List</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div id="library-information"></div>
+                <div id="library-information">
+                    <div id="accordion">
+                       
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -223,7 +229,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <h5 class="modal-title" id="exampleModalLabel gameInfoModal"></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -231,8 +237,12 @@
                     <div class="modal-body" id="gameInfo">
 
                     </div>
+
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <p id="wishListError"></p>
+                        <button type="button" class="btn btn-dark" id="wishlistButton">Add to Wishlist</button>
+                        <button type="button" class="btn btn-danger" id="gameInfoDismissal"
+                            data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -241,29 +251,12 @@
 
     <!-- <button>click</button> -->
 
+    //
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#config-web-app -->
-
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyDUfIh4HelMGbMhdeYmKl-D97pC2jJYql0",
-    authDomain: "next-game-dc90c.firebaseapp.com",
-    databaseURL: "https://next-game-dc90c.firebaseio.com",
-    projectId: "next-game-dc90c",
-    appId: "1:446183546506:web:9105e15a8b1f86a8ac1773"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
-  const auth = firebase.auth();
-  const db = firebase.firestore();
-</script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
 
     <script src="assets/javascript/script.js"></script>
 

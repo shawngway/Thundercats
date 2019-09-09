@@ -1,5 +1,55 @@
 $(document).ready(function () {
-  //global variables
+
+  // <!-- TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#config-web-app -->
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDUfIh4HelMGbMhdeYmKl-D97pC2jJYql0",
+    authDomain: "next-game-dc90c.firebaseapp.com",
+    databaseURL: "https://next-game-dc90c.firebaseio.com",
+    projectId: "next-game-dc90c",
+    appId: "1:446183546506:web:9105e15a8b1f86a8ac1773",
+    storageBucket: "next-game-dc90c.appspot.com",
+    messagingSenderId: "446183546506",
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  const auth = firebase.auth();    //firebase functions saved as variables
+  const db = firebase.database();
+
+  //global variables being changed depending on user input
+  var gameInspected;
+  var wishList = [];
+  var JSONWishList;
+
+
+
+  /////////////////////////////////////user authentication changes//////////////////////////////////////////////
+  auth.onAuthStateChanged(user => {               //nav bar dynamically changes based on users signing in or out
+    if (user) {
+      console.log("user logged in: ", user)   //when user is signed in nav bar changes to this
+      $("#accountNav").show();
+      $("#libraryNav").show();
+      $("#userLogout").show();
+      $("#signInNav").hide();
+      $("#signUpNav").hide();
+
+    } else {
+      console.log("user logged out")          //when user is signed out nav bar changes to this
+      $("#signInNav").show();
+      $("#signUpNav").show();
+      $("#accountNav").hide();
+      $("#libraryNav").hide();
+      $("#userLogout").hide();
+    }
+  })
+
+
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //global variables for games being searched
   var gameTitleInput;
   var genreBeingSearched;
 
@@ -28,12 +78,8 @@ $(document).ready(function () {
 
           var cover = $("<img class='cover'>")
 
-
-
-          console.log(cover.attr("data-name"))
-
           var cover = $("<img>")
-          var div = $("<div>")
+          var div = $("<div class='suggGameDiv'>")
           var li = $("<li>")
 
 
@@ -66,12 +112,6 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
-
   $(".genre-buttons").on("click", "button", function () { //whenever a genre button is clicked
     console.log("chicken")
     genreBeingSearched = this.id
@@ -96,9 +136,13 @@ $(document).ready(function () {
   var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
 
   function gameSearch() {
-
-    console.log($(this).attr("data-name"))
-    var metaName = $(this).attr("data-name")
+    $("#wishListError").html("");
+    console.log($(this).attr("data-name"));
+    var metaName = $(this).attr("data-name");
+    gameInspected = $(this).attr("data-name")
+    console.log(gameInspected);
+    $("#wishlistButton").removeAttr("id");
+    $("#wishlistButton").attr("id", gameInspected);
     $.ajax({
       url: queryURL,
       method: "POST",
@@ -147,7 +191,8 @@ $(document).ready(function () {
     })
   }
 
-  //////////////////////////////////////<modals> and signing in and out////////////////////////////////////////////////////////
+  //////////////////////////////////////<modals> and signing in/out////////////////////////////////////////////////////////
+
   //getting users signed up
   $("#signUpButton").on("click", function (event) {
     event.preventDefault()
@@ -159,6 +204,7 @@ $(document).ready(function () {
         $("#closeSignUp").click();
         $("#signUpInputPassword1").val("");       //closes and resets the fields in the sign up modal
         $("#signUpInputEmail1").val("");
+
       });
 
 
@@ -184,19 +230,60 @@ $(document).ready(function () {
 
   //users can sign out
   $("#userLogout").on("click", function (event) {
-    auth.signOut().then(() => {           //when users click log out it signs them out and afterwards its promise is to console.log a message
-      console.log("user has signed out");
-    })
+    auth.signOut();
+  });
+
+  $("#libraryNav").on("click", function (event){
+    $("#accordion").empty();
+    for(var i = 0; i < wishList.length; i++){         //for each set of items in the wishlist array creates a collapsable bootstrap folder to hold data
+      var card = $("<div>").attr("class", "card");
+      var cardHead = $("<div>").attr({"class":"card-head", "id":"heading" + (i+1),});
+      card.append(cardHead);
+      var h5 = $("<h5>").attr("class", "mb-0");             //makes a button with the contents equal to the index array that its grabbing the info from
+      cardHead.append(h5);
+      h5.append("<button>" + wishList[i] +"</button>").attr({"class":"btn btn-dark", "data-toggle": "collapse", "data-target":"#collapse" + (i+1), "aria-expanded":"true", "aria-controls": "collapse" + (i+1), "id":wishList[i]});
+      var collapse = $("<div>").attr({"id":"collapse" + (i+1), "class": "collapse", "aria-labelledby": "heading" + (i+1), "data-parent":"#accordion"});
+      var cardBody = $("<div>").attr("class", "card-body");
+      card.append(collapse);
+      collapse.append(cardBody);
+      $("#accordion").append(card);
+    }
   });
 
 
+  //game wishlist being populated
+  $("#wishlistButton").on("click", function (event) {
+    event.preventDefault();
+    $("#wishListError").html("")
+    console.log(gameInspected);
+    var contains = wishList.includes(gameInspected)   //checks if the game is already in their wishlist
+    console.log(wishList.length);
+    if (contains === true) {                          //if its in there an error message comes up
+      $("#wishListError").html("This game is already in your wishlist.").css({ "color": "red", "display": "block" });
+      return;
+    } else if (contains === false) {                  //if it isn't in there it adds the game to the wishlist
+      wishList.push(gameInspected);
+      JSONWishList = JSON.stringify(wishList);        //then sets the new wishlist as the local storage
+      localStorage.setItem('wishList', JSONWishList);
+      console.log(JSONWishList);
+      console.log(JSON.parse(localStorage['wishList']))
+
+    }
+    console.log(wishList);
 
 
-
-
-
+  })
 
   ///////////////////////////////////////</modals>////////////////////////////////////////////////////////////////
+
+
+  //runs when the page is loaded. populates the wishList with the stored local data
+  function localDataPopulatingWishList() {
+    wishList = JSON.parse(localStorage['wishList'])
+    console.log(wishList);
+  }
+
+  localDataPopulatingWishList();
 
   $(document).on("click", ".uk-panel", gameSearch);
   // console.log(tool);
