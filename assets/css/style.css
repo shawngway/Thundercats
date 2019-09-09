@@ -1,6 +1,4 @@
-body {
-    background-color: #E9ECEF;
-}
+
 
 .btn-dark:hover {
     background-color: #990100;
@@ -11,7 +9,7 @@ body {
     display: none;
 }
 body {
-    background-color: #E9ECEF;
+    background-color: #000;
 }
 
 .btn-dark:hover {
@@ -23,7 +21,12 @@ body {
     display: none;
 }
 
-
+.jumbotron {
+    background-image: url("file:///Users/anthonymcpherson/Downloads/background.png"); 
+    background-size: cover; 
+    
+    
+  }
 
 .form-rounded {
 border-radius: 1rem;
