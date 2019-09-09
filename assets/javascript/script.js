@@ -64,9 +64,9 @@ $(document).ready(function () {
 
       //API
 
-      var queryURL = "https://api.rawg.io/api/games/" + gameTitleInput + "/suggested?page_size=5"
+      var queryURL = "https://api.rawg.io/api/games/" + gameTitleInput + "/suggested?page_size=5" //url for rawg, finding games similar to the gameTitleInput and giving (currently 5) results
 
-      $.ajax({
+      $.ajax({ //ajax call
         url: queryURL,
         method: "GET"
       }).then(function (response) {
@@ -74,24 +74,24 @@ $(document).ready(function () {
         console.log(response.results)
         $("#placeholder").css({ "display": "none" })
 
-        for (i = 0; i < response.results.length; i++) {
+        $("#gameSugg").html("")
 
-          var cover = $("<img class='cover'>")
+        for (i = 0; i < response.results.length; i++) { //for each result, (currently 5)
 
-          var cover = $("<img>")
-          var div = $("<div class='suggGameDiv'>")
-          var li = $("<li>")
+          var cover = $("<img class='cover'>") //creates an image and assigns it the class 'cover', and sets it equal to the variable 'cover'
+          var div = $("<div class='suggGameDiv'>") //creates a div and assigns it the class 'suggGameDiv' , and sets it equal to the variable 'div' (how creative of us)
+          var li = $("<li>") //creates a list and sets it equal to the variable 'li'
 
 
-          div.attr("data-name", response.results[i].name)
+          div.attr("data-name", response.results[i].name) //the data-name of div is set to the name of the game chosen
 
-          div.attr("class", 'uk-panel active')
+          div.attr("class", 'uk-panel active') //the classes of div are set to uk-panel and active
 
-          div.attr("data-toggle", 'modal')
+          div.attr("data-toggle", 'modal') //the data-toggle of div is set to 'modal'
 
-          div.attr("data-target", '#gameModal')
+          div.attr("data-target", '#gameModal') //the data-target of div is set to '#gameModal'
 
-          cover.attr("src", response.results[i].short_screenshots[0].image)
+          cover.attr("src", response.results[i].short_screenshots[0].image) //the source of the <img> cover is set to the first screenshot for each game.
 
 
           $("#gameSugg").append(li)
@@ -108,26 +108,6 @@ $(document).ready(function () {
     else $("#invalidTitle").css({ "display": "block", "color": "red", "margin-top": "10px" });       //error message appears if form isn't filled out properly
 
   })
-
-
-
-
-  $(".genre-buttons").on("click", "button", function () { //whenever a genre button is clicked
-    console.log("chicken")
-    genreBeingSearched = this.id
-
-    console.log(genreBeingSearched)
-  })
-
-  //appends divs to game area
-
-  // var gameImage = "picture"//cover
-
-  // var gameTitle = "name"//game name
-
-  // var gameRating = "rating"//game rating
-
-  // var gameBox = $("<img>").addClass("gamebox");
 
 
   // Example queryURL for Giphy API
@@ -168,6 +148,7 @@ $(document).ready(function () {
         .then(function (game) {
           $("#gameInfo").html(`<li>${game[0].name}</li>`)
           $("#gameInfo").append("<li><a href='" + game[0].url + "'>Game Info</a></li>")
+          
 
           console.log(game)
         })
