@@ -241,7 +241,7 @@ $(document).ready(function () {
       card.append(cardHead);
       var h5 = $("<h5>").attr("class", "mb-0");             //makes a button with the contents equal to the index array that its grabbing the info from
       cardHead.append(h5);
-      h5.append("<button>" + wishList[i] +"</button>").attr({"class":"btn btn-link", "data-toggle": "collapse", "data-target":"#collapse" + (i+1), "aria-expanded":"true", "aria-controls": "collapse" + (i+1)});
+      h5.append("<button>" + wishList[i] +"</button>").attr({"class":"btn btn-dark", "data-toggle": "collapse", "data-target":"#collapse" + (i+1), "aria-expanded":"true", "aria-controls": "collapse" + (i+1), "id":wishList[i]});
       var collapse = $("<div>").attr({"id":"collapse" + (i+1), "class": "collapse", "aria-labelledby": "heading" + (i+1), "data-parent":"#accordion"});
       var cardBody = $("<div>").attr("class", "card-body");
       card.append(collapse);
