@@ -20,6 +20,8 @@ $(document).ready(function () {
   const db = firebase.database();
   var gameInspected;
   var wishList = [];
+  var JSONWishList;
+
 
 
   /////////////////////////////////////user authentication changes//////////////////////////////////////////////
@@ -229,37 +231,35 @@ $(document).ready(function () {
     auth.signOut();
   })
 
-  ///////////////////////////////////////</modals>////////////////////////////////////////////////////////////////
-
   $("#wishlistButton").on("click", function (event) {
     event.preventDefault();
     $("#wishListError").html("")
     console.log(gameInspected);
     var contains = wishList.includes(gameInspected)
-    if(wishList.length > 0){
-        console.log(wishList.length);
-        if (contains === true) {
-          $("#wishListError").html("This game is already in your wishlist.").css({ "color": "red", "display" : "block" });
-          return;
-        }else if(contains === false){
-          wishList.push(gameInspected);
-        }
-        console.log(wishList);
+      console.log(wishList.length);
+      if (contains === true) {
+        $("#wishListError").html("This game is already in your wishlist.").css({ "color": "red", "display": "block" });
+        return;
+      } else if (contains === false) {
+        wishList.push(gameInspected);
+        JSONWishList = JSON.stringify(wishList);
+        localStorage.setItem('wishList', JSONWishList);
+        console.log(JSONWishList);
+        console.log(JSON.parse(localStorage['wishList']))
         
-      
-    } else wishList.push(gameInspected);
-    
-    
-    console.log(wishList);
-    return;
+      }
+      console.log(wishList);
+
 
   })
 
-  $("#gameModal").on("toggle", function(){
-    $("#wishListError").html("");
-  })
+  ///////////////////////////////////////</modals>////////////////////////////////////////////////////////////////
+function localDataPopulatingWishList(){
+  wishList = JSON.parse(localStorage['wishList'])
+  console.log(wishList);
+}
 
-
+localDataPopulatingWishList();
 
   $(document).on("click", ".uk-panel", gameSearch);
   // console.log(tool);
