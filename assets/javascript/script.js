@@ -166,9 +166,11 @@ $(document).ready(function () {
       // }
       gameById(response[0].id)
         .then(function (game) {
+          $("#gameModal").val("")
           $(".modal-title").html(`<h1>${game[0].name}</h1>`)
-          $("#gameInfo").html("<p><a href='" + game[0].url + "'>Game Info</a></p>")
-
+          $("#gameInfo").html("<p> " + game[0].summary + "</p>")
+          $("#gameInfo").append("<p> Rating: " + game[0].rating + "</p>")
+          $("#gameInfo").append("<p><a href='" + game[0].url + "'>Go to IGDB for more Info</a></p>")
           console.log(game)
         })
 
