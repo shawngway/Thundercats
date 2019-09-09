@@ -18,6 +18,8 @@ $(document).ready(function () {
 
   const auth = firebase.auth();    //firebase functions saved as variables
   const db = firebase.database();
+
+  //global variables being changed depending on user input
   var gameInspected;
   var wishList = [];
   var JSONWishList;
@@ -47,7 +49,7 @@ $(document).ready(function () {
 
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  //global variables
+  //global variables for games being searched
   var gameTitleInput;
   var genreBeingSearched;
 
@@ -229,37 +231,59 @@ $(document).ready(function () {
   //users can sign out
   $("#userLogout").on("click", function (event) {
     auth.signOut();
-  })
+  });
 
+  $("#libraryNav").on("click", function (event){
+    $("#accordion").empty();
+    for(var i = 0; i < wishList.length; i++){         //for each set of items in the wishlist array creates a collapsable bootstrap folder to hold data
+      var card = $("<div>").attr("class", "card");
+      var cardHead = $("<div>").attr({"class":"card-head", "id":"heading" + (i+1),});
+      card.append(cardHead);
+      var h5 = $("<h5>").attr("class", "mb-0");             //makes a button with the contents equal to the index array that its grabbing the info from
+      cardHead.append(h5);
+      h5.append("<button>" + wishList[i] +"</button>").attr({"class":"btn btn-link", "data-toggle": "collapse", "data-target":"#collapse" + (i+1), "aria-expanded":"true", "aria-controls": "collapse" + (i+1)});
+      var collapse = $("<div>").attr({"id":"collapse" + (i+1), "class": "collapse", "aria-labelledby": "heading" + (i+1), "data-parent":"#accordion"});
+      var cardBody = $("<div>").attr("class", "card-body");
+      card.append(collapse);
+      collapse.append(cardBody);
+      $("#accordion").append(card);
+    }
+  });
+
+
+  //game wishlist being populated
   $("#wishlistButton").on("click", function (event) {
     event.preventDefault();
     $("#wishListError").html("")
     console.log(gameInspected);
-    var contains = wishList.includes(gameInspected)
-      console.log(wishList.length);
-      if (contains === true) {
-        $("#wishListError").html("This game is already in your wishlist.").css({ "color": "red", "display": "block" });
-        return;
-      } else if (contains === false) {
-        wishList.push(gameInspected);
-        JSONWishList = JSON.stringify(wishList);
-        localStorage.setItem('wishList', JSONWishList);
-        console.log(JSONWishList);
-        console.log(JSON.parse(localStorage['wishList']))
-        
-      }
-      console.log(wishList);
+    var contains = wishList.includes(gameInspected)   //checks if the game is already in their wishlist
+    console.log(wishList.length);
+    if (contains === true) {                          //if its in there an error message comes up
+      $("#wishListError").html("This game is already in your wishlist.").css({ "color": "red", "display": "block" });
+      return;
+    } else if (contains === false) {                  //if it isn't in there it adds the game to the wishlist
+      wishList.push(gameInspected);
+      JSONWishList = JSON.stringify(wishList);        //then sets the new wishlist as the local storage
+      localStorage.setItem('wishList', JSONWishList);
+      console.log(JSONWishList);
+      console.log(JSON.parse(localStorage['wishList']))
+
+    }
+    console.log(wishList);
 
 
   })
 
   ///////////////////////////////////////</modals>////////////////////////////////////////////////////////////////
-function localDataPopulatingWishList(){
-  wishList = JSON.parse(localStorage['wishList'])
-  console.log(wishList);
-}
 
-localDataPopulatingWishList();
+
+  //runs when the page is loaded. populates the wishList with the stored local data
+  function localDataPopulatingWishList() {
+    wishList = JSON.parse(localStorage['wishList'])
+    console.log(wishList);
+  }
+
+  localDataPopulatingWishList();
 
   $(document).on("click", ".uk-panel", gameSearch);
   // console.log(tool);
