@@ -166,8 +166,8 @@ $(document).ready(function () {
       // }
       gameById(response[0].id)
         .then(function (game) {
-          $("#gameInfo").html(`<li>${game[0].name}</li>`)
-          $("#gameInfo").append("<li><a href='" + game[0].url + "'>Game Info</a></li>")
+          $(".modal-title").html(`<h1>${game[0].name}</h1>`)
+          $("#gameInfo").append("<p><a href='" + game[0].url + "'>Game Info</a></p>")
 
           console.log(game)
         })
