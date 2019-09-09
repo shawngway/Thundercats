@@ -9,38 +9,41 @@ $(document).ready(function () {
     authDomain: "next-game-dc90c.firebaseapp.com",
     databaseURL: "https://next-game-dc90c.firebaseio.com",
     projectId: "next-game-dc90c",
-    appId: "1:446183546506:web:9105e15a8b1f86a8ac1773"
+    appId: "1:446183546506:web:9105e15a8b1f86a8ac1773",
+    storageBucket: "next-game-dc90c.appspot.com",
+    messagingSenderId: "446183546506",
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
   const auth = firebase.auth();    //firebase functions saved as variables
-  const db = firebase.firestore();
+  const db = firebase.database();
+  var key;
 
 
-/////////////////////////////////////user authentication changes//////////////////////////////////////////////
-auth.onAuthStateChanged(user => {
-  if (user) {
-    console.log("user logged in: ", user)
-    $("#accountNav").show();
-    $("#libraryNav").show();
-    $("#userLogout").show();
-    $("#signInNav").hide();
-    $("#signUpNav").hide();
+  /////////////////////////////////////user authentication changes//////////////////////////////////////////////
+  auth.onAuthStateChanged(user => {               //nav bar dynamically changes based on users signing in or out
+    if (user) {
+      console.log("user logged in: ", user)   //when user is signed in nav bar changes to this
+      $("#accountNav").show();
+      $("#libraryNav").show();
+      $("#userLogout").show();
+      $("#signInNav").hide();
+      $("#signUpNav").hide();
 
-  } else{
-    console.log("user logged out")
-    $("#signInNav").show();
-    $("#signUpNav").show();
-    $("#accountNav").hide();
-    $("#libraryNav").hide();
-    $("#userLogout").hide();
-  }
-})
+    } else {
+      console.log("user logged out")          //when user is signed out nav bar changes to this
+      $("#signInNav").show();
+      $("#signUpNav").show();
+      $("#accountNav").hide();
+      $("#libraryNav").hide();
+      $("#userLogout").hide();
+    }
+  })
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //global variables
   var gameTitleInput;
   var genreBeingSearched;
@@ -189,7 +192,8 @@ auth.onAuthStateChanged(user => {
     })
   }
 
-  //////////////////////////////////////<modals> and signing in and out////////////////////////////////////////////////////////
+  //////////////////////////////////////<modals> and signing in/out////////////////////////////////////////////////////////
+
   //getting users signed up
   $("#signUpButton").on("click", function (event) {
     event.preventDefault()
@@ -201,6 +205,11 @@ auth.onAuthStateChanged(user => {
         $("#closeSignUp").click();
         $("#signUpInputPassword1").val("");       //closes and resets the fields in the sign up modal
         $("#signUpInputEmail1").val("");
+
+        wishlist = "chicken";
+        db.ref(userName).push({
+          wishlist: wishlist,
+        });
       });
 
 
@@ -227,7 +236,7 @@ auth.onAuthStateChanged(user => {
   //users can sign out
   $("#userLogout").on("click", function (event) {
     auth.signOut();
-    })
+  })
 
 
 
