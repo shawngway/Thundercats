@@ -18,7 +18,8 @@ $(document).ready(function () {
 
   const auth = firebase.auth();    //firebase functions saved as variables
   const db = firebase.database();
-  var key;
+  var gameInspected;
+  var wishList = [];
 
 
   /////////////////////////////////////user authentication changes//////////////////////////////////////////////
@@ -73,12 +74,8 @@ $(document).ready(function () {
 
           var cover = $("<img class='cover'>")
 
-
-
-          console.log(cover.attr("data-name"))
-
           var cover = $("<img>")
-          var div = $("<div>")
+          var div = $("<div class='suggGameDiv'>")
           var li = $("<li>")
 
 
@@ -111,12 +108,6 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
-
   $(".genre-buttons").on("click", "button", function () { //whenever a genre button is clicked
     console.log("chicken")
     genreBeingSearched = this.id
@@ -141,9 +132,13 @@ $(document).ready(function () {
   var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
 
   function gameSearch() {
-
-    console.log($(this).attr("data-name"))
-    var metaName = $(this).attr("data-name")
+    $("#wishListError").html("");
+    console.log($(this).attr("data-name"));
+    var metaName = $(this).attr("data-name");
+    gameInspected = $(this).attr("data-name")
+    console.log(gameInspected);
+    $("#wishlistButton").removeAttr("id");
+    $("#wishlistButton").attr("id", gameInspected);
     $.ajax({
       url: queryURL,
       method: "POST",
@@ -206,10 +201,6 @@ $(document).ready(function () {
         $("#signUpInputPassword1").val("");       //closes and resets the fields in the sign up modal
         $("#signUpInputEmail1").val("");
 
-        wishlist = "chicken";
-        db.ref(userName).push({
-          wishlist: wishlist,
-        });
       });
 
 
@@ -238,14 +229,37 @@ $(document).ready(function () {
     auth.signOut();
   })
 
-
-
-
-
-
-
-
   ///////////////////////////////////////</modals>////////////////////////////////////////////////////////////////
+
+  $("#wishlistButton").on("click", function (event) {
+    event.preventDefault();
+    $("#wishListError").html("")
+    console.log(gameInspected);
+    var contains = wishList.includes(gameInspected)
+    if(wishList.length > 0){
+        console.log(wishList.length);
+        if (contains === true) {
+          $("#wishListError").html("This game is already in your wishlist.").css({ "color": "red", "display" : "block" });
+          return;
+        }else if(contains === false){
+          wishList.push(gameInspected);
+        }
+        console.log(wishList);
+        
+      
+    } else wishList.push(gameInspected);
+    
+    
+    console.log(wishList);
+    return;
+
+  })
+
+  $("#gameModal").on("toggle", function(){
+    $("#wishListError").html("");
+  })
+
+
 
   $(document).on("click", ".uk-panel", gameSearch);
   // console.log(tool);
