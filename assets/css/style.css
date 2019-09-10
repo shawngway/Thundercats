@@ -1,5 +1,7 @@
 
-
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
 .btn-dark:hover {
     background-color: #990100;
 
@@ -52,6 +54,10 @@ body {
 
 .form-rounded {
 border-radius: 1rem;
+}
+
+.form-check-label{
+    color: white;
 }
 
 .btn {

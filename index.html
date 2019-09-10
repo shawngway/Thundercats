@@ -10,21 +10,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="assets/css/reset.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/css/uikit.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/js/uikit.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.9/js/uikit-icons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
@@ -32,6 +25,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -142,8 +136,8 @@
                     <div><h5 class="accountInline">Email:</h5> <p id="userEmail">cheeseburger@yum.com</p></div>
                     <div><h5 class="accountInline">User Since:</h5> <p id="userSince"></p></div>
                     <div><h5 class="accountInline">Games In Current Wish List:</h5> <p id="currentWishListCount"></p></div>
-                    <div> <h5 class="accountInline">Total Games Added to Wish List</h5> <p id="totalWishListCount"></p></div>
-                    <div> <h5 class="accountInline">Games Removed From Wish List</h5> <p id="DeletedGamesCount">0</p></div>
+                    <div> <h5 class="accountInline">Total Games Added to Wish List:</h5> <p id="totalWishListCount"></p></div>
+                    <div> <h5 class="accountInline">Games Removed From Wish List:</h5> <p id="DeletedGamesCount">0</p></div>
                                   
                 </div>
             </div>
@@ -184,19 +178,14 @@
                     <input type="text" class="form-control" id="gameInput" aria-describedby="inputRules"
                         placeholder="Enter Favorite Game Title">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="xboxRadio"
-                            value="option1">
-                        <label class="form-check-label" for="xboxRadio">Xbox 1</label>
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="similarSearch"
+                            value="option1" checked>
+                        <label class="form-check-label" for="similarSearch">Search Similar Games</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="psRadio"
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="specificSearch"
                             value="option1">
-                        <label class="form-check-label" for="psRadio">PS4</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="pcRadio"
-                            value="option1">
-                        <label class="form-check-label" for="pcRadio">PC</label>
+                        <label class="form-check-label" for="specificSearch">Search Specific Game</label>
                     </div>
                     <small id="inputRules" class="form-text text-muted">Enter a game you love and use the button
                         below
