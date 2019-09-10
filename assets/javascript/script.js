@@ -73,7 +73,7 @@ $(document).ready(function () {
 
         console.log(response.results)
         $("#placeholder").css({ "display": "none" })
-
+        $("#gameSugg").html("")
         for (i = 0; i < response.results.length; i++) {
 
           var cover = $("<img class='cover'>")
