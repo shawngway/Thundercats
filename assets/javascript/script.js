@@ -51,7 +51,7 @@ $(document).ready(function () {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //global variables for games being searched
   var gameTitleInput;
-  var genreBeingSearched;
+
 
 
   $("#submitButton").on("click", function (event) { //whenever the submit button is clicked
@@ -116,13 +116,15 @@ $(document).ready(function () {
   var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
 
   function gameSearch() {
+    console.log("works");
     $("#wishListError").html("");
     console.log($(this).attr("data-name"));
     var metaName = $(this).attr("data-name");
-    gameInspected = $(this).attr("data-name")
+    console.log(metaName);
+    gameInspected = $(this).attr("data-name");
     console.log(gameInspected);
     $("#wishlistButton").removeAttr("id");
-    $("#wishlistButton").attr("id", gameInspected);
+    $("#wishlistButton").attr("id", metaName);
     $.ajax({
       url: queryURL,
       method: "POST",
@@ -161,6 +163,7 @@ $(document).ready(function () {
     });
   };
 
+  $(document).on("click", ".uk-panel", gameSearch);
 
   function gameById(id) {
     return $.ajax({
@@ -270,6 +273,7 @@ $("#accordion").on("click", "button", function(){
   //game wishlist being populated
   $("#wishlistButton").on("click", function (event) {
     event.preventDefault();
+    console.log($(this))
     $("#wishListError").html("")
     console.log(gameInspected);
     var contains = wishList.includes(gameInspected)   //checks if the game is already in their wishlist
@@ -303,7 +307,6 @@ $("#accordion").on("click", "button", function(){
   localDataPopulatingWishList();
   console.log(wishList)
 
-  $(document).on("click", ".uk-panel", gameSearch);
   // console.log(tool);
   // // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
   // var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
