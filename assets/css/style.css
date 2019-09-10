@@ -18,6 +18,22 @@ body {
 
 }
 
+#userEmail{
+    display: inline-block;
+}
+
+#userSince{
+    display: inline-block;
+}
+
+#totalWishListCount{
+    display: inline-block;
+}
+
+.accountInline{
+    display: inline-block;
+}
+
 #invalidTitle{
     display: none;
 }
