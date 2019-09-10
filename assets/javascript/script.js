@@ -21,7 +21,7 @@ $(document).ready(function () {
 
   //global variables being changed depending on user input
   var gameInspected;
-  var wishList = [];
+  var wishList = [""];
   var JSONWishList;
 
 
@@ -56,6 +56,8 @@ $(document).ready(function () {
 
   $("#submitButton").on("click", function (event) { //whenever the submit button is clicked
     event.preventDefault()
+
+    
     gameTitleInput = $("#gameInput").val().trim().replace(/\s/g, '-'); //sets gameTitleInput to text input
     $("#gameInput").val("")
     if ((gameTitleInput !== "")) { //if gameTitleInput is not null
@@ -82,8 +84,8 @@ $(document).ready(function () {
           var div = $("<div class='suggGameDiv'>") //creates a div and assigns it the class 'suggGameDiv' , and sets it equal to the variable 'div' (how creative of us)
           var li = $("<li>") //creates a list and sets it equal to the variable 'li'
 
-
-          div.attr("data-name", response.results[i].name) //the data-name of div is set to the name of the game chosen
+var mmmmmh = response.results[i].name.replace(":", "")
+          div.attr("data-name", mmmmmh) //the data-name of div is set to the name of the game chosen
 
           div.attr("class", 'uk-panel active') //the classes of div are set to uk-panel and active
 
@@ -121,7 +123,7 @@ $(document).ready(function () {
     console.log($(this).attr("data-name"));
     var metaName = $(this).attr("data-name");
     console.log(metaName);
-    gameInspected = $(this).attr("data-name");
+    gameInspected = metaName;
     console.log(gameInspected);
     $("#wishlistButton").removeAttr("id");
     $("#wishlistButton").attr("id", metaName);
@@ -221,7 +223,7 @@ $(document).ready(function () {
   $("#libraryNav").on("click", function (event){
     $("#accordion").empty();
     
-    for(var i = 0; i < wishList.length; i++){         //for each set of items in the wishlist array creates a collapsable bootstrap folder to hold data
+    for(var i = 1; i < wishList.length; i++){         //for each set of items in the wishlist array creates a collapsable bootstrap folder to hold data
       var card = $("<div>").attr("class", "card");
       var cardHead = $("<div>").attr({"class":"card-head", "id":"heading cardHead" + (i+1),});
       card.append(cardHead);             //makes a button with the contents equal to the index array that its grabbing the info from
