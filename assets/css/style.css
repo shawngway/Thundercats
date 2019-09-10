@@ -44,3 +44,6 @@ html {
     background-color: #000;
 }
 
+form-rounded {
+    border-radius: 1rem;
+    }
