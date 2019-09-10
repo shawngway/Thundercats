@@ -51,7 +51,7 @@ $(document).ready(function () {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //global variables for games being searched
   var gameTitleInput;
-  var genreBeingSearched;
+
 
 
   $("#submitButton").on("click", function (event) { //whenever the submit button is clicked
@@ -64,34 +64,34 @@ $(document).ready(function () {
 
       //API
 
-      var queryURL = "https://api.rawg.io/api/games/" + gameTitleInput + "/suggested?page_size=5"
+      var queryURL = "https://api.rawg.io/api/games/" + gameTitleInput + "/suggested?page_size=5" //url for rawg, finding games similar to the gameTitleInput and giving (currently 5) results
 
-      $.ajax({
+      $.ajax({ //ajax call
         url: queryURL,
         method: "GET"
       }).then(function (response) {
 
         console.log(response.results)
         $("#placeholder").css({ "display": "none" })
+
         $("#gameSugg").html("")
-        for (i = 0; i < response.results.length; i++) {
 
-          var cover = $("<img class='cover'>")
+        for (i = 0; i < response.results.length; i++) { //for each result, (currently 5)
 
-          var cover = $("<img>")
-          var div = $("<div class='suggGameDiv'>")
-          var li = $("<li>")
+          var cover = $("<img class='cover'>") //creates an image and assigns it the class 'cover', and sets it equal to the variable 'cover'
+          var div = $("<div class='suggGameDiv'>") //creates a div and assigns it the class 'suggGameDiv' , and sets it equal to the variable 'div' (how creative of us)
+          var li = $("<li>") //creates a list and sets it equal to the variable 'li'
 
 
-          div.attr("data-name", response.results[i].name)
+          div.attr("data-name", response.results[i].name) //the data-name of div is set to the name of the game chosen
 
-          div.attr("class", 'uk-panel active')
+          div.attr("class", 'uk-panel active') //the classes of div are set to uk-panel and active
 
-          div.attr("data-toggle", 'modal')
+          div.attr("data-toggle", 'modal') //the data-toggle of div is set to 'modal'
 
-          div.attr("data-target", '#gameModal')
+          div.attr("data-target", '#gameModal') //the data-target of div is set to '#gameModal'
 
-          cover.attr("src", response.results[i].short_screenshots[0].image)
+          cover.attr("src", response.results[i].short_screenshots[0].image) //the source of the <img> cover is set to the first screenshot for each game.
 
 
           $("#gameSugg").append(li)
@@ -110,39 +110,21 @@ $(document).ready(function () {
   })
 
 
-
-
-  $(".genre-buttons").on("click", "button", function () { //whenever a genre button is clicked
-    console.log("chicken")
-    genreBeingSearched = this.id
-
-    console.log(genreBeingSearched)
-  })
-
-  //appends divs to game area
-
-  // var gameImage = "picture"//cover
-
-  // var gameTitle = "name"//game name
-
-  // var gameRating = "rating"//game rating
-
-  // var gameBox = $("<img>").addClass("gamebox");
-
-
   // Example queryURL for Giphy API
   // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
   var tool = "test";
   var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
 
   function gameSearch() {
+    console.log("works");
     $("#wishListError").html("");
     console.log($(this).attr("data-name"));
     var metaName = $(this).attr("data-name");
-    gameInspected = $(this).attr("data-name")
+    console.log(metaName);
+    gameInspected = $(this).attr("data-name");
     console.log(gameInspected);
     $("#wishlistButton").removeAttr("id");
-    $("#wishlistButton").attr("id", gameInspected);
+    $("#wishlistButton").attr("id", metaName);
     $.ajax({
       url: queryURL,
       method: "POST",
@@ -181,6 +163,7 @@ $(document).ready(function () {
     });
   };
 
+  $(document).on("click", ".uk-panel", gameSearch);
 
   function gameById(id) {
     return $.ajax({
@@ -290,6 +273,7 @@ $("#accordion").on("click", "button", function(){
   //game wishlist being populated
   $("#wishlistButton").on("click", function (event) {
     event.preventDefault();
+    console.log($(this))
     $("#wishListError").html("")
     console.log(gameInspected);
     var contains = wishList.includes(gameInspected)   //checks if the game is already in their wishlist
@@ -323,7 +307,6 @@ $("#accordion").on("click", "button", function(){
   localDataPopulatingWishList();
   console.log(wishList)
 
-  $(document).on("click", ".uk-panel", gameSearch);
   // console.log(tool);
   // // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
   // var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
