@@ -21,7 +21,7 @@ $(document).ready(function () {
 
   //global variables being changed depending on user input
   var gameInspected;
-  var wishList = [];
+  var wishList = ["USE ME DADDY"];
   var JSONWishList;
 
 
@@ -221,7 +221,7 @@ $(document).ready(function () {
   $("#libraryNav").on("click", function (event){
     $("#accordion").empty();
     
-    for(var i = 0; i < wishList.length; i++){         //for each set of items in the wishlist array creates a collapsable bootstrap folder to hold data
+    for(var i = 1; i < wishList.length + 1; i++){         //for each set of items in the wishlist array creates a collapsable bootstrap folder to hold data
       var card = $("<div>").attr("class", "card");
       var cardHead = $("<div>").attr({"class":"card-head", "id":"heading cardHead" + (i+1),});
       card.append(cardHead);             //makes a button with the contents equal to the index array that its grabbing the info from
