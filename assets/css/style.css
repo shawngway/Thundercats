@@ -1,6 +1,4 @@
-body {
-    background-color: #E9ECEF;
-}
+
 
 .btn-dark:hover {
     background-color: #990100;
@@ -11,7 +9,8 @@ body {
     display: none;
 }
 body {
-    background-color: #E9ECEF;
+    background-color: #000;
+    background: #000;
 }
 
 .btn-dark:hover {
@@ -34,5 +33,13 @@ border-radius: 1rem;
 .btn {
     margin-left: 10px;
     margin-right: 10px;
-  border-radius: 40px;
+    border-radius: 40px;
+}
+
+.jumbotron {
+    background-image: url("https://shawngway.github.io/Thundercats/assets/images/background.png"); 
+    background-size: cover; 
+}
+html {
+    background-color: #000;
 }
