@@ -145,6 +145,7 @@ $(document).ready(function () {
           gameById(response[0].id)
             .then(function (game) {
               console.log("trying to do something with response");
+              console.log("game name: " + game[0].name)
               $("#gameModal").modal("toggle")
               $("#gameModalHeader").html(`<h1>${game[0].name}</h1>`)
               $("#gameInfo").html("<p> " + game[0].summary + "</p>")
@@ -204,6 +205,8 @@ $(document).ready(function () {
       // }
       gameById(response[0].id)
         .then(function (game) {
+          gameInspected = game[0].name;
+          console.log(gameInspected)
           console.log("trying to do something with response");
           $("#gameModal").val("")
           $("#gameModalHeader").html(`<h1>${game[0].name}</h1>`)
