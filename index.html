@@ -35,7 +35,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#990100">
         <a class="navbar-brand" href="#">Next Game</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,11 +72,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Next Game Sign Up</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeSignUp">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="m-1" id="sign-up-form">
+                <form id="sign-up-form">
                     <div class="form-group">
                         <label for="signUpInputEmail1">Email address</label>
                         <input type="email" class="form-control" id="signUpInputEmail1" aria-describedby="emailHelp"
@@ -89,9 +89,10 @@
                         <input type="password" class="form-control" id="signUpInputPassword1" placeholder="Password">
                     </div>
                     <p id="signUpError"></p>
+                    <button type="submit" class="btn btn-primary" id="signUpButton">Submit</button>
                 </form>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-dark" id="signUpButton">Submit</button>
+                    <button type="button" class="btn btn-dark" id="closeSignUp" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -103,11 +104,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Next Game Sign In</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="logInClose">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form class="m-1" id="sign-in-form">
+                <form id="sign-in-form">
                     <div class="form-group">
                         <label for="signInInputEmail1">Email address</label>
                         <input type="email" class="form-control" id="signInInputEmail1" aria-describedby="emailHelp"
@@ -119,9 +120,10 @@
                         <label for="signInInputPassword1">Password</label>
                         <input type="password" class="form-control" id="signInInputPassword1" placeholder="Password">
                     </div>
+                    <button type="submit" id="logInButton" class="btn btn-primary">Submit</button>
                 </form>
                 <div class="modal-footer">
-                    <button type="submit" id="logInButton" class="btn btn-dark">Submit</button>
+                    <button type="button" id="logInClose" class="btn btn-dark" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -163,16 +165,16 @@
     <!-- container making the page mobile responsive -->
     <div class="container-fluid">
         <!-- header, we can put title here, description if we want, cool logo if we create one -->
-        <div class="jumbotron jumbotron-fluid text-center">
+        <div class="jumbotron jumbotron-fluid text-center" style="background-color:#000">
             <div class="container">
-                <img src="assets/images/NG.png" width="250" alt="Next Game Logo">
+                <img src="https://shawngway.github.io/Thundercats/assets/images/nglogodrk.png" width="250" alt="Next Game Logo"><br><br>
                 <!-- <h1 class="display-4">NEXTGAME</h1>
                 <p class="text-muted">(logo/catchphrase/description here?)</p> -->
             </div>
             <!-- input for searching by title.  we can add more parameters here (year, company) if we want.  our genre img links can go before or after, haven't made them yet -->
             <form class="text-center my-1 col-md-4 offset-md-4">
                 <div class="form-group">
-                    <label for="gameInput">Search For A Game By Title</label>
+                    <!-- <label for="gameInput">Search For A Game By Title</label> -->
                     <input type="text" class="form-control" id="gameInput" aria-describedby="inputRules"
                         placeholder="Enter Favorite Game Title">
                     <div class="form-check form-check-inline">
@@ -205,7 +207,8 @@
             <button type="button" class="btn btn-dark" id="shooter" attr="shooter ">Shooter</button>
             <button type="button" class="btn btn-dark" id="moba" attr="moba">Moba</button>
         </div> -->
-        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider>
+
+        <div class="uk-position-relative uk-visible-toggle uk-light" id="carousel" tabindex="-1" uk-slider>
 
             <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@m uk-grid" id="gameSugg">
                 <li id="placeholder">
@@ -239,8 +242,8 @@
                     <div class="modal-footer">
                         <p id="wishListError"></p>
                         <button type="button" class="btn btn-dark" id="wishlistButton">Add to Wishlist</button>
-                        <!-- <button type="button" class="btn btn-danger" id="gameInfoDismissal"
-                            data-dismiss="modal">Close</button> -->
+                        <button type="button" class="btn btn-danger" id="gameInfoDismissal"
+                            data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -249,7 +252,6 @@
 
     <!-- <button>click</button> -->
 
-    //
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
