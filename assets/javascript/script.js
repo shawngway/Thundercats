@@ -24,6 +24,7 @@ $(document).ready(function () {
   var wishList = [""];
   var JSONWishList;
   var gamesDeleted = 0;
+  var userEmail;
 
 
 
@@ -37,6 +38,7 @@ $(document).ready(function () {
       $("#signInNav").hide();
       $("#signUpNav").hide();
       $("#userEmail").html(user.email);
+      userEmail = user.email
       $("#userSince").html(user.metadata.creationTime);
 
 
@@ -318,15 +320,15 @@ $(document).ready(function () {
     populateWishList();
     gamesDeleted++;
     JSONDeletedWishListItems = JSON.stringify(gamesDeleted);
-    localStorage.setItem('deletedWishList', JSONDeletedWishListItems);
+    localStorage.setItem(userEmail + 'deletedWishList', JSONDeletedWishListItems);
     JSONWishList = JSON.stringify(wishList);
-    localStorage.setItem('wishList', JSONWishList);
+    localStorage.setItem(userEmail + 'wishList', JSONWishList);
     $("#DeletedGamesCount").html(gamesDeleted);
     console.log(gamesDeleted);
-    console.log(JSON.parse(localStorage['deletedWishList']));
+    console.log(JSON.parse(localStorage[userEmail + 'deletedWishList']));
     console.log("wishlist " + wishList);
     console.log(JSONWishList);
-    console.log(JSON.parse(localStorage['wishList']));
+    console.log(JSON.parse(localStorage[userEmail + 'wishList']));
 
 
 
@@ -384,9 +386,9 @@ $(document).ready(function () {
     } else if (contains === false) {                  //if it isn't in there it adds the game to the wishlist
       wishList.push(gameInspected);
       JSONWishList = JSON.stringify(wishList);        //then sets the new wishlist as the local storage
-      localStorage.setItem('wishList', JSONWishList);
+      localStorage.setItem(userEmail + 'wishList', JSONWishList);
       console.log(JSONWishList);
-      console.log(JSON.parse(localStorage['wishList']));
+      console.log(JSON.parse(localStorage[userEmail + 'wishList']));
 
 
     }
@@ -401,8 +403,8 @@ $(document).ready(function () {
 
   //runs when the page is loaded. populates the wishList with the stored local data
   function localDataPopulatingWishList() {
-    wishList = JSON.parse(localStorage['wishList'])
-    gamesDeleted = JSON.parse(localStorage['deletedWishList'])
+    wishList = JSON.parse(localStorage[userEmail + 'wishList'])
+    gamesDeleted = JSON.parse(localStorage[userEmail + 'deletedWishList'])
     $("#DeletedGamesCount").html(gamesDeleted);
     console.log(wishList);
   }
