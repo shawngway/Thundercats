@@ -78,3 +78,14 @@ html {
 form-rounded {
     border-radius: 1rem;
     }
+
+    @media (max-width: 991px) { 
+        #icon {
+            position: absolute;
+        }
+    }
+    @media (max-width: 767px) { 
+        #icon {
+            position: absolute;
+        }
+    }
