@@ -158,8 +158,6 @@ body {
     margin-right: 75px;
 }
 
-
-
 .nav-item{
     margin-right: 10px;
 }
@@ -174,6 +172,10 @@ body {
 
 .form-rounded {
 border-radius: 1rem;
+}
+
+h1{
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .form-check-label{
@@ -219,3 +221,4 @@ form-rounded {
             position: absolute;
         }
     }} */
+}
