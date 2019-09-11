@@ -153,13 +153,13 @@ $(document).ready(function () {
               console.log("trying to do something with response");
               console.log("game name: " + game[0].name)
               $("#gameModal").modal("toggle")
-              $("#gameModalHeader").html(`<h1>${game[0].name}</h1>`)
+              $("#gameModalHeader").html(`<h1 id='cssHeaderForSpecificGameModal'>${game[0].name}</h1>`)
               $("#gameInfo").html("<p> " + game[0].summary + "</p>")
               $("#gameInfo").append("<p> Rating: " + game[0].rating + "</p>")
-              $("#gameInfo").append("<p><a href='" + game[0].url + "'  target='blank'>Go to IGDB for more Info</a></p>")
+              $("#gameInfo").append("<button type='button' class='btn btn-dark' id='cssForSpecificGameModal'><a id='cssForSpecificGameModal href='" + game[0].url + "'  target='blank'>Go to IGDB for more Info</a></button>")
               console.log(game)
             })
-
+                                                          //<button type="button" class="btn btn-dark" id="wishlistButton">
           console.log(response);
           console.log(response[0]);
         }).fail(function (jqXHR, textStatus) {
@@ -216,12 +216,12 @@ $(document).ready(function () {
           console.log(gameInspected)
           console.log("trying to do something with response");
           $("#gameModal").val("")
-          $("#gameModalHeader").html(`<h1>${game[0].name}</h1>`)
+          $("#gameModalHeader").html(`<h1 class=' col-12 modal-title text-center' id='gameModalHeaderCss'>${game[0].name}</h1>`)
           $("#gameInfo").html("<p> " + game[0].summary + "</p>")
           $("#gameInfo").append("<p> Rating: " + game[0].rating + "</p>")
-          $("#gameInfo").append("<p><a href='" + game[0].url + "'  target='blank'>Go to IGDB for more Info</a></p>")
+          $("#gameInfo").append("<button type='button' class='btn btn-dark id='cssForSpecificGameModal'><a id='cssForSpecificGameModal' href='" + game[0].url + "'  target='blank'>Go to IGDB for more Info</a></button>")
           console.log(game)
-        })
+        })                              //<button type='button' class='btn btn-dark' id='cssForSpecificGameModal'><a
 
       console.log(response);
       console.log(response[0]);
@@ -354,7 +354,7 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(response);
       currentAccordian = $("#cardBody" + game);
-      var tags = $("<h5>");
+      var tags = $("<h5 id='needsToBeWhite'>");
       //tags.html("tags: " + response.tags[0].name + " and " + response.tags[1].name);
       var rating = $("<p>").html(response.metacritic);
       // console.log(tags);

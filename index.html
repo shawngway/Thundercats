@@ -65,7 +65,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Next Game Sign Up</h5>
+                    <h1 class="modal-title" id="exampleModalLabel">Next Game Sign Up</h1>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeSignUp">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -97,7 +97,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Next Game Sign In</h5>
+                    <h1 class="modal-title" id="exampleModalLabel">Next Game Sign In</h1>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="logInClose">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -127,19 +127,19 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">My Account Info</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h1 class="modal-title" id="exampleModalLabel">My Account Info</h1>
+                    <button type="button" class="close btn-sm" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
                     <div>
-                            <ul class="list-group">
-                                    <li class="list-group-item"><h5 class="accountInline" id="userEmail"></h5></li>
-                                    <li class="list-group-item"><h5 class="accountInline" id="userSince">User Since:</h5></li>
-                                    <li class="list-group-item"><h5 class="accountInline" id="currentWishListCount">Games In Current Wish List:</h5></li>
-                                    <li class="list-group-item"><h5 class="accountInline" id="totalWishListCount">total games added</h5></li>
-                                    <li class="list-group-item"><h5 class="accountInline" id="DeletedGamesCount">Games Removed From Wish List:</h5></li>
+                            <ul class="list-group" id="needsToBeGreyBackground">
+                                    <li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="userEmail"></h5></li>
+                                    <li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="userSince">User Since:</h5></li>
+                                    <li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="currentWishListCount">Games In Current Wish List:</h5></li>
+                                    <li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="totalWishListCount">total games added</h5></li>
+                                    <li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="DeletedGamesCount">Games Removed From Wish List:</h5></li>
                                   </ul>
                     </div>
                 </div>
@@ -152,8 +152,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5>My Wish List</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <h1 id="needsToBeWhite">My Wish List</h1>
+                    <button type="button" id="needsToBeWhite" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -227,9 +227,9 @@
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div id="gameTitleModalHeadCenterCss" class="modal-header">
                         <h5 class="modal-title" id="gameModalHeader"></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        <button type="button" id="xCSS"class="close" data-dismiss="modal" aria-label="Close"
                             id="gameInfoDismissal">
                             <span aria-hidden="true">&times;</span>
                         </button>
