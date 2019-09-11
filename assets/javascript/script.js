@@ -37,6 +37,7 @@ $(document).ready(function () {
       $("#accountNav").show();
       $("#libraryNav").show();
       $("#userLogout").show();
+      $("#carousel").show();
       $("#signInNav").hide();
       $("#signUpNav").hide();
       $("#userEmail").html("Email: " + user.email);
@@ -44,7 +45,8 @@ $(document).ready(function () {
 
 
     } else {
-      console.log("user logged out")          //when user is signed out nav bar changes to this
+      console.log("user logged out")
+      $("#carousel").hide()       //when user is signed out nav bar changes to this
       $("#contentHidden").hide();
       $("#submitButton").hide()
       $("#signInNav").show();
@@ -216,7 +218,7 @@ $(document).ready(function () {
           $("#gameInfo").append("<p> Rating: " + game[0].rating + "</p>")
           $("#gameInfo").append("<button type='button' class='btn btn-dark id='cssForSpecificGameModal'><a id='cssForSpecificGameModal' href='" + game[0].url + "'  target='blank'>Go to IGDB for more Info</a></button>")
           console.log(game)
-        })                              
+        })
 
       console.log(response);
       console.log(response[0]);
@@ -302,22 +304,38 @@ $(document).ready(function () {
     }
   }
 
-  $("#searchHistoryButton").on("click", function (event) {
-    $("#searchHistoryAppend").empty()
-    if(searchHistory.length > 0){
+  function searchHistoryPopulate() {
+    $("#searchHistoryAppend").empty()       //function for setting up the search history list items
+    if (searchHistory.length > 0) {
       for (var i = 0; i < searchHistory.length; i++) {
         var li = $("<li>").attr({ "class": "list-group-item text-center", "id": "needsgreybackground" });
         var h5 = $("<h5>").html(searchHistory[i]);
         li.append(h5);
         $("#searchHistoryAppend").prepend(li);
+        var exit = $("<button>").attr({ "type": "button", "class": "close", "class": "close", "data-name": searchHistory[i], "aria-label": "Close", "id": "deleteSearchHistoryButton" });
+        exit.append("<span id='" + i + "' data-toggle='modal' data-target='deleteWishListModal' class='span'>&times;</span>");
+        $(li).prepend(exit);
       }
-    }else {
+    } else {
       var li = $("<li>").attr({ "class": "list-group-item text-center", "id": "needsgreybackground" });
-        var h5 = $("<h5>").html("No search history found");
-        li.append(h5);
-        $("#searchHistoryAppend").prepend(li);
+      var h5 = $("<h5>").html("No search history found");
+      li.append(h5);
+      $("#searchHistoryAppend").prepend(li);
     }
-    
+  }
+
+
+  $("#searchHistoryButton").on("click", function (event) {
+    searchHistoryPopulate()     //search history list items populated on button the view search history button
+  }
+  )
+
+  $("#searchHistoryAppend").on("click", "span", function () {       //when you delete something from search history it repopulates the field
+    console.log(this.id);
+    searchHistory.splice((this.id), 1);
+    var stringedSearchHistory = JSON.stringify(searchHistory)
+    localStorage.setItem('localSearchHistory', stringedSearchHistory);
+    searchHistoryPopulate();
 
   })
   //<li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="userEmail"></h5></li>
