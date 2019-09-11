@@ -82,11 +82,18 @@ form-rounded {
 
     @media (max-width: 991px) { 
         #icon {
-            position: fixed;
-            padding-left: 3em;
+            position: absolute;
+           
     }
-    @media (max-width: 767px) { 
+    
+    .nav-link {
+        display: block;
+        padding: .5rem 1rem;
+        margin-left: 5rem;
+
+
+    /* @media (max-width: 767px) { 
         #icon {
             position: absolute;
         }
-    }
+    }} */
