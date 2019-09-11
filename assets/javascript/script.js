@@ -400,7 +400,7 @@ $(document).ready(function () {
 
     }
     console.log(wishList);
-    $("#gameInfoDismissal").click();
+    $("#xCSS").click();
 
 
   })
