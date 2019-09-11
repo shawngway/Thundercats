@@ -1,5 +1,22 @@
+h1 {
+    font-size: 2em;
+}
+h4 {
+    font-size: 1.5rem;
+    background-color: #990100;
+    font-weight: 200;
+}
+svg:not(:root) {
+    color: #fff;
+    overflow: hidden;
+}
 
-body{
+.uk-position-small {
+    max-width: calc(100% - (15px * 2));
+    margin: 15px;
+    background-color: #990100;
+}
+    body{
     font-family: Arial, Helvetica, sans-serif;
 }
 .btn-dark:hover {
@@ -8,31 +25,34 @@ body{
 }
 
 .modal-content{
-    background-color: #343a40;
-    color: white;
+    opacity: .9;
+    background-color: #181818;
+    color: #F8F8F8;
 }
 
 #gameModalHeaderCss{
-    color: white;
+    color: #F8F8F8;
     text-align: center;
 }
 
-#gameTitleModalHeadCenterCss{
+#gameTitleModalHeadCenterCss {
+    font-size: 2em;
     text-align: center;
-    color: white;
+    color: #F8F8F8;
 }
 
-h5{
-    color: white;
+h5 {
+    color: #F8F8F8;
 }
 
 #needsgreybackground{
-    background-color: #343a40;
-    border: white 1px solid;
+    background-color: 	#181818;
+    border: #282828 1px solid;
 }
 
 #exampleModalLabel{
-    color: white;
+    font-size: 2em;
+    color: #F8F8F8;
 }
 
 #listGroupItemCss{
@@ -48,14 +68,17 @@ h5{
 }
 
 .card-body{
-    background-color: #343a40;
+    
+    background-color: #181818;
 }
 
 #needsToBeWhite{
-    color: white;
+
+    color: #F8F8F8;
 }
 
 .modal-header{
+    
     text-align: center;
     color: white;
 }
@@ -74,9 +97,11 @@ h5{
 }
 
 
-
+.card {
+    background-color: #282828;
+}
 .card-head{
-    background-color: #343a40;
+    background-color: #181818;
 }
 
 
@@ -96,23 +121,33 @@ body {
 }
 
 #userEmail{
+    font-size: 1em;
     display: inline-block;
 }
 
 #userSince{
+    font-size: 1em;
     display: inline-block;
 }
 
 #totalWishListCount{
+    font-size: 1em;
     display: inline-block;
 }
 
 #currentWishListCount{
+    font-size: 1em;
     display: inline-block;
 }
 
 #DeletedGamesCount{
+    font-size: 1em;
     display: inline-block;
+}
+
+#deleteWishListButton {
+    padding: .5em;
+    color: white;
 }
 
 .accountInline{
@@ -169,11 +204,21 @@ form-rounded {
 
     @media (max-width: 991px) { 
         #icon {
-            position: fixed;
-            padding-left: 3em;
-    }}
-    @media (max-width: 767px) { 
+            position: absolute;
+           
+    }
+    
+    .nav-link {
+        display: block;
+        padding: .5rem 1rem;
+        margin-left: 5rem;
+    }
+
+
+
+    /* @media (max-width: 767px) { 
         #icon {
             position: absolute;
         }
-    }
+    }} */
+}

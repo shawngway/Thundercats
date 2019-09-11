@@ -194,6 +194,8 @@ $(document).ready(function () {
     console.log(gameInspected);
     $("#wishlistButton").removeAttr("id");
     $("#wishlistButton").attr("id", metaName);
+    $("#gameModalHeader").html(`<h1 class=' col-12 modal-title text-center' id='gameModalHeaderCss'>${metaName}</h1>`)
+    $("#gameInfo").html("please wait while the game information loads...")
     $.ajax({
       url: queryURL,
       method: "POST",
@@ -204,30 +206,17 @@ $(document).ready(function () {
       //where rating > 99;fields name, category, cover, platforms, videos; limit 4; 
     }).then(function (response) {
       console.log(response)
-      // $.ajax({
-      //   url: queryURL,
-      //   method: "POST",
-      //   headers: {
-      //     "user-key": "d61ece206f9dedf20a9aa373ffa29739"
-      //   },
-      //   data: "fields *; where id = " + response[0].id + ";"
-      // }).then(function (pickles){
-      //   console.log(pickles)
-      // });
-      // for (var i = 0; i < response.length; i++) {
-      // }
       gameById(response[0].id)
         .then(function (game) {
           gameInspected = game[0].name.replace(":", "");
           console.log(gameInspected)
           console.log("trying to do something with response");
           $("#gameModal").val("")
-          $("#gameModalHeader").html(`<h1 class=' col-12 modal-title text-center' id='gameModalHeaderCss'>${game[0].name}</h1>`)
           $("#gameInfo").html("<p> " + game[0].summary + "</p>")
           $("#gameInfo").append("<p> Rating: " + game[0].rating + "</p>")
           $("#gameInfo").append("<button type='button' class='btn btn-dark id='cssForSpecificGameModal'><a id='cssForSpecificGameModal' href='" + game[0].url + "'  target='blank'>Go to IGDB for more Info</a></button>")
           console.log(game)
-        })                              //<button type='button' class='btn btn-dark' id='cssForSpecificGameModal'><a
+        })                              
 
       console.log(response);
       console.log(response[0]);
@@ -310,9 +299,6 @@ $(document).ready(function () {
       var exit = $("<button>").attr({ "type": "button", "class": "close", "class": "close", "data-name": wishList[i], "aria-label": "Close", "id": "deleteWishListButton" });
       exit.append("<span id='" + wishList[i] + "' data-toggle='modal' data-target='deleteWishListModal' class='span'>&times;</span>");
       cardHead.append(exit);
-      // <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="">
-      //<span aria-hidden="true">&times;</span>
-      //</button>
     }
   }
 
@@ -429,7 +415,7 @@ $(document).ready(function () {
 
     }
     console.log(wishList);
-    $("#gameInfoDismissal").click();
+    $("#xCSS").click();
 
 
   })
@@ -448,42 +434,6 @@ $(document).ready(function () {
 
   localDataPopulatingWishList();
   console.log(wishList)
-
-  // console.log(tool);
-  // // var queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9";
-  // var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
-  // $.ajax({
-  //   url: queryURL,
-  //   method: "POST",
-  //   headers: {
-  //     "user-key": "d61ece206f9dedf20a9aa373ffa29739"
-  //   },
-  //   data: "fields *; where id = 104945;"
-  // }).then(function (response) {
-  //   console.log(response);
-  //   var title = response[0].name
-  //   console.log(title)
-  //   $("#exampleModalLabel").append(title + " Info")
-  // }).fail(function (jqXHR, textStatus) {
-  //   console.error(textStatus)
-  // });
-
-
-  // ends appends to game area
-
-  //on click of the sumbit button, calls the search function
-  // var gameImage = "picture"//cover
-
-  // var gameTitle = "name"//game name
-
-  // var gameRating = "rating"//game rating
-
-
-  // var gameBox = $("<img>").addClass("gamebox");
-
-  // var gameBox = $("<img>").addClass("gamebox")
-
-  // var gameBox = $("<img>").addClass("gamebox");
 
 
 });
