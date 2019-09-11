@@ -25,6 +25,7 @@ $(document).ready(function () {
   var JSONWishList;
   var gamesDeleted = 0;
   var metaName
+  var searchHistory = [];
 
 
   /////////////////////////////////////user authentication changes//////////////////////////////////////////////
@@ -66,6 +67,11 @@ $(document).ready(function () {
     event.preventDefault();
 
     var specificSearchGameTitleInput = $("#gameInput").val().trim();
+    searchHistory.push($("#gameInput").val().trim());
+    console.log(searchHistory);
+    var stringedSearchHistory = JSON.stringify(searchHistory)
+    localStorage.setItem('localSearchHistory', stringedSearchHistory);
+    console.log(JSON.stringify(searchHistory))
 
     gameTitleInput = $("#gameInput").val().trim().replace(/\s/g, '-'); //sets gameTitleInput to text input
     $("#gameInput").val("")
@@ -110,7 +116,7 @@ $(document).ready(function () {
             cover.attr("src", response.results[i].short_screenshots[0].image) //the source of the <img> cover is set to the first screenshot for each game.
 
 
-            $("#gameSugg").append(li)          
+            $("#gameSugg").append(li)
             $(li).append(div)
             $(li).append(title)
             $(div).append(cover)
@@ -159,7 +165,7 @@ $(document).ready(function () {
               $("#gameInfo").append("<button type='button' class='btn btn-dark' id='cssForSpecificGameModal'><a id='cssForSpecificGameModal href='" + game[0].url + "'  target='blank'>Go to IGDB for more Info</a></button>")
               console.log(game)
             })
-                                                          //<button type="button" class="btn btn-dark" id="wishlistButton">
+          //<button type="button" class="btn btn-dark" id="wishlistButton">
           console.log(response);
           console.log(response[0]);
         }).fail(function (jqXHR, textStatus) {
@@ -257,7 +263,9 @@ $(document).ready(function () {
         $("#signUpInputPassword1").val("");       //closes and resets the fields in the sign up modal
         $("#signUpInputEmail1").val("");
 
+
       });
+
 
 
     }
@@ -307,6 +315,27 @@ $(document).ready(function () {
       //</button>
     }
   }
+
+  $("#searchHistoryButton").on("click", function (event) {
+    $("#searchHistoryAppend").empty()
+    if(searchHistory.length > 0){
+      for (var i = 0; i < searchHistory.length; i++) {
+        var li = $("<li>").attr({ "class": "list-group-item text-center", "id": "needsgreybackground" });
+        var h5 = $("<h5>").html(searchHistory[i]);
+        li.append(h5);
+        $("#searchHistoryAppend").prepend(li);
+      }
+    }else {
+      var li = $("<li>").attr({ "class": "list-group-item text-center", "id": "needsgreybackground" });
+        var h5 = $("<h5>").html("No search history found");
+        li.append(h5);
+        $("#searchHistoryAppend").prepend(li);
+    }
+    
+
+  })
+  //<li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="userEmail"></h5></li>
+
 
   $("#libraryNav").on("click", function (event) {
 
@@ -388,7 +417,7 @@ $(document).ready(function () {
     var contains = wishList.includes(gameInspected)   //checks if the game is already in their wishlist
     console.log(wishList.length);
     if (contains === true) {                          //if its in there an error message comes up
-      $("#wishListError").html("This game is already in your wishlist.").css({ "color": "white", "display": "block", "font-weight":"bold" });
+      $("#wishListError").html("This game is already in your wishlist.").css({ "color": "white", "display": "block", "font-weight": "bold" });
       return;
     } else if (contains === false) {                  //if it isn't in there it adds the game to the wishlist
       wishList.push(gameInspected);
@@ -414,6 +443,7 @@ $(document).ready(function () {
     gamesDeleted = JSON.parse(localStorage['deletedWishList'])
     $("#DeletedGamesCount").html("Games Deleted From Wish List: " + gamesDeleted);
     console.log(wishList);
+    searchHistory = JSON.parse(localStorage['localSearchHistory']);
   }
 
   localDataPopulatingWishList();
