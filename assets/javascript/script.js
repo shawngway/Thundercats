@@ -26,11 +26,12 @@ $(document).ready(function () {
   var gamesDeleted = 0;
 
 
-
   /////////////////////////////////////user authentication changes//////////////////////////////////////////////
   auth.onAuthStateChanged(user => {               //nav bar dynamically changes based on users signing in or out
     if (user) {
       console.log("user logged in: ", user)   //when user is signed in nav bar changes to this
+      $("#contentHidden").show();
+      $("#submitButton").show();
       $("#accountNav").show();
       $("#libraryNav").show();
       $("#userLogout").show();
@@ -42,6 +43,8 @@ $(document).ready(function () {
 
     } else {
       console.log("user logged out")          //when user is signed out nav bar changes to this
+      $("#contentHidden").hide();
+      $("#submitButton").hide()
       $("#signInNav").show();
       $("#signUpNav").show();
       $("#accountNav").hide();
@@ -88,7 +91,7 @@ $(document).ready(function () {
           $("#gameSugg").html("")
 
           for (i = 0; i < response.results.length; i++) { //for each result, (currently 5)
-
+            var title = $("<h4 class='text-center'>").append(response.results[i].name);
             var cover = $("<img class='cover'>") //creates an image and assigns it the class 'cover', and sets it equal to the variable 'cover'
             var div = $("<div class='suggGameDiv'>") //creates a div and assigns it the class 'suggGameDiv' , and sets it equal to the variable 'div' (how creative of us)
             var li = $("<li>") //creates a list and sets it equal to the variable 'li'
@@ -105,8 +108,9 @@ $(document).ready(function () {
             cover.attr("src", response.results[i].short_screenshots[0].image) //the source of the <img> cover is set to the first screenshot for each game.
 
 
-            $("#gameSugg").append(li)
+            $("#gameSugg").append(li)          
             $(li).append(div)
+            $(li).append(title)
             $(div).append(cover)
 
 

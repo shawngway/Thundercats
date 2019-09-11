@@ -177,7 +177,7 @@
             </div>
             <!-- input for searching by title.  we can add more parameters here (year, company) if we want.  our genre img links can go before or after, haven't made them yet -->
             <form class="text-center my-1 col-md-4 offset-md-4">
-                <div class="form-group">
+                <div id="contentHidden" class="form-group">
                     <!-- <label for="gameInput">Search For A Game By Title</label> -->
                     <input type="text" class="form-control form-rounded" id="gameInput" aria-describedby="inputRules"
                         placeholder="Enter Favorite Game Title">
@@ -198,7 +198,7 @@
                 <button type="submit" id="submitButton" class="btn btn-dark"><i class="fa fa-search"></i>
                     Submit</button>
 
-                <p id="invalidTitle">Please enter a valid Game title first</p>
+                <p id="invalidTitle">Please enter a valid game title first</p>
             </form>
         </div>
         <!-- <div class="genre-buttons text-center m-1">
