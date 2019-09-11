@@ -28,6 +28,7 @@ h5{
 
 #needsgreybackground{
     background-color: #343a40;
+    border: white 1px solid;
 }
 
 #exampleModalLabel{
@@ -71,6 +72,8 @@ h5{
     color: white;
     font-weight: bolder;
 }
+
+
 
 .card-head{
     background-color: #343a40;
