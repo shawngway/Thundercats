@@ -7,12 +7,87 @@ body{
 
 }
 
+.modal-content{
+    background-color: #343a40;
+    color: white;
+}
+
+#gameModalHeaderCss{
+    color: white;
+    text-align: center;
+}
+
+#gameTitleModalHeadCenterCss{
+    text-align: center;
+    color: white;
+}
+
+h5{
+    color: white;
+}
+
+#needsgreybackground{
+    background-color: #343a40;
+    border: white 1px solid;
+}
+
+#exampleModalLabel{
+    color: white;
+}
+
+#listGroupItemCss{
+    color: white;
+}
+
+#deleteWishListButton{
+    color: white;
+}
+
+.btn-sm{
+    color: white;
+}
+
+.card-body{
+    background-color: #343a40;
+}
+
+#needsToBeWhite{
+    color: white;
+}
+
+.modal-header{
+    text-align: center;
+    color: white;
+}
+
+#cssHeaderForSpecificGameModal{
+    color: white;
+}
+
+#xCSS{
+    color: white;
+}
+
+#cssForSpecificGameModal{
+    color: white;
+    font-weight: bolder;
+}
+
+
+
+.card-head{
+    background-color: #343a40;
+}
+
+
 #invalidTitle{
     display: none;
 }
+
 body {
     background-color: #000;
     background: #000;
+    margin-bottom: 60px;
 }
 
 .btn-dark:hover {
@@ -42,6 +117,16 @@ body {
 
 .accountInline{
     display: inline-block;
+}
+
+#icon{
+    margin-right: 75px;
+}
+
+
+
+.nav-item{
+    margin-right: 10px;
 }
 
 #invalidTitle{

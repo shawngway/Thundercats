@@ -27,22 +27,25 @@ $(document).ready(function () {
   var metaName
 
 
-
   /////////////////////////////////////user authentication changes//////////////////////////////////////////////
   auth.onAuthStateChanged(user => {               //nav bar dynamically changes based on users signing in or out
     if (user) {
       console.log("user logged in: ", user)   //when user is signed in nav bar changes to this
+      $("#contentHidden").show();
+      $("#submitButton").show();
       $("#accountNav").show();
       $("#libraryNav").show();
       $("#userLogout").show();
       $("#signInNav").hide();
       $("#signUpNav").hide();
-      $("#userEmail").html(user.email);
-      $("#userSince").html(user.metadata.creationTime);
+      $("#userEmail").html("Email: " + user.email);
+      $("#userSince").html("User Since: " + user.metadata.creationTime);
 
 
     } else {
       console.log("user logged out")          //when user is signed out nav bar changes to this
+      $("#contentHidden").hide();
+      $("#submitButton").hide()
       $("#signInNav").show();
       $("#signUpNav").show();
       $("#accountNav").hide();
@@ -89,7 +92,7 @@ $(document).ready(function () {
           $("#gameSugg").html("")
 
           for (i = 0; i < response.results.length; i++) { //for each result, (currently 5)
-
+            var title = $("<h4 class='text-center'>").append(response.results[i].name);
             var cover = $("<img class='cover'>") //creates an image and assigns it the class 'cover', and sets it equal to the variable 'cover'
             var div = $("<div class='suggGameDiv'>") //creates a div and assigns it the class 'suggGameDiv' , and sets it equal to the variable 'div' (how creative of us)
             var li = $("<li>") //creates a list and sets it equal to the variable 'li'
@@ -107,8 +110,9 @@ $(document).ready(function () {
             cover.attr("src", response.results[i].short_screenshots[0].image) //the source of the <img> cover is set to the first screenshot for each game.
 
 
-            $("#gameSugg").append(li)
+            $("#gameSugg").append(li)          
             $(li).append(div)
+            $(li).append(title)
             $(div).append(cover)
 
 
@@ -149,13 +153,13 @@ $(document).ready(function () {
               console.log("trying to do something with response");
               console.log("game name: " + game[0].name)
               $("#gameModal").modal("toggle")
-              $("#gameModalHeader").html(`<h1>${game[0].name}</h1>`)
+              $("#gameModalHeader").html(`<h1 id='cssHeaderForSpecificGameModal'>${game[0].name}</h1>`)
               $("#gameInfo").html("<p> " + game[0].summary + "</p>")
               $("#gameInfo").append("<p> Rating: " + game[0].rating + "</p>")
-              $("#gameInfo").append("<p><a href='" + game[0].url + "'  target='blank'>Go to IGDB for more Info</a></p>")
+              $("#gameInfo").append("<button type='button' class='btn btn-dark' id='cssForSpecificGameModal'><a id='cssForSpecificGameModal href='" + game[0].url + "'  target='blank'>Go to IGDB for more Info</a></button>")
               console.log(game)
             })
-
+                                                          //<button type="button" class="btn btn-dark" id="wishlistButton">
           console.log(response);
           console.log(response[0]);
         }).fail(function (jqXHR, textStatus) {
@@ -212,12 +216,12 @@ $(document).ready(function () {
           console.log(gameInspected)
           console.log("trying to do something with response");
           $("#gameModal").val("")
-          $("#gameModalHeader").html(`<h1>${game[0].name}</h1>`)
+          $("#gameModalHeader").html(`<h1 class=' col-12 modal-title text-center' id='gameModalHeaderCss'>${game[0].name}</h1>`)
           $("#gameInfo").html("<p> " + game[0].summary + "</p>")
           $("#gameInfo").append("<p> Rating: " + game[0].rating + "</p>")
-          $("#gameInfo").append("<p><a href='" + game[0].url + "'  target='blank'>Go to IGDB for more Info</a></p>")
+          $("#gameInfo").append("<button type='button' class='btn btn-dark id='cssForSpecificGameModal'><a id='cssForSpecificGameModal' href='" + game[0].url + "'  target='blank'>Go to IGDB for more Info</a></button>")
           console.log(game)
-        })
+        })                              //<button type='button' class='btn btn-dark' id='cssForSpecificGameModal'><a
 
       console.log(response);
       console.log(response[0]);
@@ -324,7 +328,7 @@ $(document).ready(function () {
     localStorage.setItem('deletedWishList', JSONDeletedWishListItems);
     JSONWishList = JSON.stringify(wishList);
     localStorage.setItem('wishList', JSONWishList);
-    $("#DeletedGamesCount").html(gamesDeleted);
+    $("#DeletedGamesCount").html("Games Deleted From Wish List: " + gamesDeleted);
     console.log(gamesDeleted);
     console.log(JSON.parse(localStorage['deletedWishList']));
     console.log("wishlist " + wishList);
@@ -350,7 +354,7 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(response);
       currentAccordian = $("#cardBody" + game);
-      var tags = $("<h5>");
+      var tags = $("<h5 id='needsToBeWhite'>");
       //tags.html("tags: " + response.tags[0].name + " and " + response.tags[1].name);
       var rating = $("<p>").html(response.metacritic);
       // console.log(tags);
@@ -366,8 +370,10 @@ $(document).ready(function () {
 
   $("#accountNav").on("click", function (event) {
     console.log("this is working");
-    $("#currentWishListCount").html(wishList.length - 1);
-    $("#totalWishListCount").html((wishList.length - 1) + gamesDeleted);
+    $("#currentWishListCount").html("Current Wish List Count: " + (wishList.length - 1));
+    $("#totalWishListCount").html("Total Games Added: " + ((wishList.length - 1) + gamesDeleted));
+    console.log("wish list length: " + wishList.length);
+    console.log(gamesDeleted)
 
 
   })
@@ -382,7 +388,7 @@ $(document).ready(function () {
     var contains = wishList.includes(gameInspected)   //checks if the game is already in their wishlist
     console.log(wishList.length);
     if (contains === true) {                          //if its in there an error message comes up
-      $("#wishListError").html("This game is already in your wishlist.").css({ "color": "red", "display": "block" });
+      $("#wishListError").html("This game is already in your wishlist.").css({ "color": "white", "display": "block", "font-weight":"bold" });
       return;
     } else if (contains === false) {                  //if it isn't in there it adds the game to the wishlist
       wishList.push(gameInspected);
@@ -406,7 +412,7 @@ $(document).ready(function () {
   function localDataPopulatingWishList() {
     wishList = JSON.parse(localStorage['wishList'])
     gamesDeleted = JSON.parse(localStorage['deletedWishList'])
-    $("#DeletedGamesCount").html(gamesDeleted);
+    $("#DeletedGamesCount").html("Games Deleted From Wish List: " + gamesDeleted);
     console.log(wishList);
   }
 
