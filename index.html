@@ -139,8 +139,28 @@
                                     <li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="userSince">User Since:</h5></li>
                                     <li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="currentWishListCount">Games In Current Wish List:</h5></li>
                                     <li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="totalWishListCount">total games added</h5></li>
-                                    <li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="DeletedGamesCount">Games Removed From Wish List:</h5></li>
+                                    <li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="DeletedGamesCount">Games Removed From Wish List:</h5></li>                    
                                   </ul>
+                                  <div class="accordion" id="accordionExample">
+                                        <div class="card">
+                                          <div class="card-body" id="headingOne">
+                                            <h2 class="mb-0">
+                                              <button class="btn btn-dark" id="searchHistoryButton" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                <h5>Search History</h5>
+                                              </button>
+                                            </h2>
+                                          </div>
+                                      
+                                          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                    <ul class="list-group" id="searchHistoryAppend">
+                                                        
+                                                    </ul>
+                                              
+                                            </div>
+                                          </div>
+                                        </div>
+                                        
                     </div>
                 </div>
             </div>
@@ -172,8 +192,7 @@
             <div class="container">
                 <img src="https://shawngway.github.io/Thundercats/assets/images/nglogodrk.png" width="250"
                     alt="Next Game Logo"><br><br>
-                <!-- <h1 class="display-4">NEXTGAME</h1>
-                <p class="text-muted">(logo/catchphrase/description here?)</p> -->
+        
             </div>
             <!-- input for searching by title.  we can add more parameters here (year, company) if we want.  our genre img links can go before or after, haven't made them yet -->
             <form class="text-center my-1 col-md-4 offset-md-4">
@@ -201,11 +220,6 @@
                 <p id="invalidTitle">Please enter a valid game title first</p>
             </form>
         </div>
-        <!-- <div class="genre-buttons text-center m-1">
-            <button type="button" class="btn btn-dark" id="horror" attr="horror">Horror</button>
-            <button type="button" class="btn btn-dark" id="shooter" attr="shooter ">Shooter</button>
-            <button type="button" class="btn btn-dark" id="moba" attr="moba">Moba</button>
-        </div> -->
 
         <div class="uk-position-relative uk-visible-toggle uk-light" id="carousel" tabindex="-1" uk-slider>
 
@@ -229,8 +243,7 @@
                 <div class="modal-content">
                     <div id="gameTitleModalHeadCenterCss" class="modal-header">
                         <h5 class="modal-title" id="gameModalHeader"></h5>
-                        <button type="button" id="xCSS"class="close" data-dismiss="modal" aria-label="Close"
-                            id="gameInfoDismissal">
+                        <button type="button" id="xCSS" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -246,8 +259,6 @@
             </div>
         </div>
     </div>
-
-    <!-- <button>click</button> -->
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
