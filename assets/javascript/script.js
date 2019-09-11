@@ -24,6 +24,7 @@ $(document).ready(function () {
   var wishList = [""];
   var JSONWishList;
   var gamesDeleted = 0;
+  var metaName
 
 
 
@@ -93,7 +94,8 @@ $(document).ready(function () {
             var div = $("<div class='suggGameDiv'>") //creates a div and assigns it the class 'suggGameDiv' , and sets it equal to the variable 'div' (how creative of us)
             var li = $("<li>") //creates a list and sets it equal to the variable 'li'
 
-            var mmmmmh = response.results[i].name.replace(":", "")
+            var mmmmmh = response.results[i].name.replace(/\s/g + '-' + /\s/g, '-').replace(":", "")
+            console.log(mmmmmh)
             div.attr("data-name", mmmmmh) //the data-name of div is set to the name of the game chosen
 
             div.attr("class", 'uk-panel active') //the classes of div are set to uk-panel and active
@@ -125,9 +127,9 @@ $(document).ready(function () {
       function specificGameSearch() {
         console.log("works");
         $("#wishListError").html("");
-        var metaName = specificSearchGameTitleInput;
+        metaName = specificSearchGameTitleInput;
         console.log(metaName);
-        gameInspected = metaName;
+        gameInspected = metaName.replace(/\s/g + '-' + /\s/g, '-');
         console.log(gameInspected);
         $("#wishlistButton").removeAttr("id");
         $("#wishlistButton").attr("id", metaName);
@@ -175,9 +177,10 @@ $(document).ready(function () {
     console.log("works");
     $("#wishListError").html("");
     console.log($(this).attr("data-name"));
-    var metaName = $(this).attr("data-name");
+    metaName = $(this).attr("data-name"); //no hyphens
+    console.log($(this).attr("data-name"))
     console.log(metaName);
-    gameInspected = metaName;
+    gameInspected = metaName
     console.log(gameInspected);
     $("#wishlistButton").removeAttr("id");
     $("#wishlistButton").attr("id", metaName);
@@ -205,7 +208,7 @@ $(document).ready(function () {
       // }
       gameById(response[0].id)
         .then(function (game) {
-          gameInspected = game[0].name;
+          gameInspected = game[0].name.replace(":", "");
           console.log(gameInspected)
           console.log("trying to do something with response");
           $("#gameModal").val("")
@@ -336,7 +339,7 @@ $(document).ready(function () {
   $("#accordion").on("click", ".btn", function () {
     console.log("wishlist accordian clicked");
 
-    var game = this.id
+    var game = this.id.replace("---", '-')
     $("#cardBody" + game).empty();
     console.log(this.id)
     console.log(game)
@@ -356,7 +359,7 @@ $(document).ready(function () {
       description.append(response.description);
       currentAccordian.append("<strong>Description</strong>: " + response.description);
       currentAccordian.append(tags);
-      currentAccordian.append("Rating: " + rating);
+      currentAccordian.append("Rating: " + response.rating);
       console.log(response);
     })
   });
