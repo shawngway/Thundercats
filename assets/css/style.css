@@ -68,8 +68,10 @@ border-radius: 1rem;
 
 .jumbotron {
     background-image: url("https://shawngway.github.io/Thundercats/assets/images/background.png"); 
-    background-size: cover; 
+    background-repeat: no-repeat;
+    background-size:100%;
 }
+
 html {
     background-color: #000;
 }
@@ -80,8 +82,8 @@ form-rounded {
 
     @media (max-width: 991px) { 
         #icon {
-            position: absolute;
-        }
+            position: fixed;
+            padding-left: 3em;
     }
     @media (max-width: 767px) { 
         #icon {
