@@ -188,6 +188,8 @@ $(document).ready(function () {
     console.log(gameInspected);
     $("#wishlistButton").removeAttr("id");
     $("#wishlistButton").attr("id", metaName);
+    $("#gameModalHeader").html(`<h1 class=' col-12 modal-title text-center' id='gameModalHeaderCss'>${metaName}</h1>`)
+    $("#gameInfo").html("please wait while the game information loads...")
     $.ajax({
       url: queryURL,
       method: "POST",
@@ -216,7 +218,6 @@ $(document).ready(function () {
           console.log(gameInspected)
           console.log("trying to do something with response");
           $("#gameModal").val("")
-          $("#gameModalHeader").html(`<h1 class=' col-12 modal-title text-center' id='gameModalHeaderCss'>${game[0].name}</h1>`)
           $("#gameInfo").html("<p> " + game[0].summary + "</p>")
           $("#gameInfo").append("<p> Rating: " + game[0].rating + "</p>")
           $("#gameInfo").append("<button type='button' class='btn btn-dark id='cssForSpecificGameModal'><a id='cssForSpecificGameModal' href='" + game[0].url + "'  target='blank'>Go to IGDB for more Info</a></button>")
