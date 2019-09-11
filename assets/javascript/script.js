@@ -37,6 +37,7 @@ $(document).ready(function () {
       $("#accountNav").show();
       $("#libraryNav").show();
       $("#userLogout").show();
+      $("#carousel").show();
       $("#signInNav").hide();
       $("#signUpNav").hide();
       $("#userEmail").html("Email: " + user.email);
@@ -44,7 +45,8 @@ $(document).ready(function () {
 
 
     } else {
-      console.log("user logged out")          //when user is signed out nav bar changes to this
+      console.log("user logged out")  
+      $("#carousel").hide()       //when user is signed out nav bar changes to this
       $("#contentHidden").hide();
       $("#submitButton").hide()
       $("#signInNav").show();
