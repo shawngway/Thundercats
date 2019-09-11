@@ -388,7 +388,7 @@ $(document).ready(function () {
     var contains = wishList.includes(gameInspected)   //checks if the game is already in their wishlist
     console.log(wishList.length);
     if (contains === true) {                          //if its in there an error message comes up
-      $("#wishListError").html("This game is already in your wishlist.").css({ "color": "red", "display": "block" });
+      $("#wishListError").html("This game is already in your wishlist.").css({ "color": "white", "display": "block", "font-weight":"bold" });
       return;
     } else if (contains === false) {                  //if it isn't in there it adds the game to the wishlist
       wishList.push(gameInspected);
