@@ -38,9 +38,9 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" data-toggle='modal' id="accountNav" data-target='#accountModal' href="#">Account
-                        <span class="sr-only">(current)</span></a>
+                        <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle='modal' id="libraryNav" data-target='#libraryModal'
@@ -132,28 +132,16 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div id="account-information">
-                    <div>
-                        <h5 class="accountInline">Email:</h5>
-                        <p id="userEmail">cheeseburger@yum.com</p>
-                    </div>
-                    <div>
-                        <h5 class="accountInline">User Since:</h5>
-                        <p id="userSince"></p>
-                    </div>
-                    <div>
-                        <h5 class="accountInline">Games In Current Wish List:</h5>
-                        <p id="currentWishListCount"></p>
-                    </div>
-                    <div>
-                        <h5 class="accountInline">Total Games Added to Wish List:</h5>
-                        <p id="totalWishListCount"></p>
-                    </div>
-                    <div>
-                        <h5 class="accountInline">Games Removed From Wish List:</h5>
-                        <p id="DeletedGamesCount">0</p>
-                    </div>
 
+                    <div>
+                            <ul class="list-group">
+                                    <li class="list-group-item"><h5 class="accountInline" id="userEmail"></h5></li>
+                                    <li class="list-group-item"><h5 class="accountInline" id="userSince">User Since:</h5></li>
+                                    <li class="list-group-item"><h5 class="accountInline" id="currentWishListCount">Games In Current Wish List:</h5></li>
+                                    <li class="list-group-item"><h5 class="accountInline" id="totalWishListCount">total games added</h5></li>
+                                    <li class="list-group-item"><h5 class="accountInline" id="DeletedGamesCount">Games Removed From Wish List:</h5></li>
+                                  </ul>
+                    </div>
                 </div>
             </div>
         </div>

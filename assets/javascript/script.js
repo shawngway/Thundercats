@@ -24,7 +24,6 @@ $(document).ready(function () {
   var wishList = [""];
   var JSONWishList;
   var gamesDeleted = 0;
-  var userEmail;
 
 
 
@@ -37,9 +36,8 @@ $(document).ready(function () {
       $("#userLogout").show();
       $("#signInNav").hide();
       $("#signUpNav").hide();
-      $("#userEmail").html(user.email);
-      userEmail = user.email
-      $("#userSince").html(user.metadata.creationTime);
+      $("#userEmail").html("Email: " + user.email);
+      $("#userSince").html("User Since: " + user.metadata.creationTime);
 
 
     } else {
@@ -320,15 +318,15 @@ $(document).ready(function () {
     populateWishList();
     gamesDeleted++;
     JSONDeletedWishListItems = JSON.stringify(gamesDeleted);
-    localStorage.setItem(userEmail + 'deletedWishList', JSONDeletedWishListItems);
+    localStorage.setItem('deletedWishList', JSONDeletedWishListItems);
     JSONWishList = JSON.stringify(wishList);
-    localStorage.setItem(userEmail + 'wishList', JSONWishList);
-    $("#DeletedGamesCount").html(gamesDeleted);
+    localStorage.setItem('wishList', JSONWishList);
+    $("#DeletedGamesCount").html("Games Deleted From Wish List: " + gamesDeleted);
     console.log(gamesDeleted);
-    console.log(JSON.parse(localStorage[userEmail + 'deletedWishList']));
+    console.log(JSON.parse(localStorage['deletedWishList']));
     console.log("wishlist " + wishList);
     console.log(JSONWishList);
-    console.log(JSON.parse(localStorage[userEmail + 'wishList']));
+    console.log(JSON.parse(localStorage['wishList']));
 
 
 
@@ -365,8 +363,10 @@ $(document).ready(function () {
 
   $("#accountNav").on("click", function (event) {
     console.log("this is working");
-    $("#currentWishListCount").html(wishList.length - 1);
-    $("#totalWishListCount").html((wishList.length - 1) + gamesDeleted);
+    $("#currentWishListCount").html("Current Wish List Count: " + (wishList.length - 1));
+    $("#totalWishListCount").html("Total Games Added: " + ((wishList.length - 1) + gamesDeleted));
+    console.log("wish list length: " + wishList.length);
+    console.log(gamesDeleted)
 
 
   })
@@ -386,9 +386,9 @@ $(document).ready(function () {
     } else if (contains === false) {                  //if it isn't in there it adds the game to the wishlist
       wishList.push(gameInspected);
       JSONWishList = JSON.stringify(wishList);        //then sets the new wishlist as the local storage
-      localStorage.setItem(userEmail + 'wishList', JSONWishList);
+      localStorage.setItem('wishList', JSONWishList);
       console.log(JSONWishList);
-      console.log(JSON.parse(localStorage[userEmail + 'wishList']));
+      console.log(JSON.parse(localStorage['wishList']));
 
 
     }
@@ -403,9 +403,9 @@ $(document).ready(function () {
 
   //runs when the page is loaded. populates the wishList with the stored local data
   function localDataPopulatingWishList() {
-    wishList = JSON.parse(localStorage[userEmail + 'wishList'])
-    gamesDeleted = JSON.parse(localStorage[userEmail + 'deletedWishList'])
-    $("#DeletedGamesCount").html(gamesDeleted);
+    wishList = JSON.parse(localStorage['wishList'])
+    gamesDeleted = JSON.parse(localStorage['deletedWishList'])
+    $("#DeletedGamesCount").html("Games Deleted From Wish List: " + gamesDeleted);
     console.log(wishList);
   }
 
