@@ -139,9 +139,10 @@ $(document).ready(function () {
     if ($('#specificSearch').is(':checked')) {
       var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
 
-      
+      if (gameTitleInput !==""){
+        $("#invalidTitle").css({ "display": "none" });
         function specificGameSearch() {
-          $("#invalidTitle").css({ "display": "none" })
+          
           console.log("works");
           $("#wishListError").html("");
           metaName = specificSearchGameTitleInput;
@@ -180,6 +181,8 @@ $(document).ready(function () {
           });
         }
         specificGameSearch();
+      }
+        
        if (gameTitleInput === ""){  $("#invalidTitle").css({ "display": "block", "color": "#990100", "margin-top": "10px", "font-emphais": "bold" });
 
       }
