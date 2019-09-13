@@ -46,7 +46,8 @@ $(document).ready(function () {
 
     } else {
       console.log("user logged out")
-      $("#carousel").hide()       //when user is signed out nav bar changes to this
+      $("#carousel").empty()       //when user is signed out nav bar changes to this
+      $("#invalidTitle").css({ "display": "none" });
       $("#contentHidden").hide();
       $("#submitButton").hide()
       $("#signInNav").show();
