@@ -67,22 +67,22 @@ $(document).ready(function () {
 
   $("#submitButton").on("click", function (event) { //whenever the submit button is clicked
     event.preventDefault();
+    gameTitleInput = $("#gameInput").val().trim().replace(/\s/g, '-'); //sets gameTitleInput to text input
     if ((gameTitleInput !== "")) {
       var specificSearchGameTitleInput = $("#gameInput").val().trim();
       searchHistory.push($("#gameInput").val().trim());
       console.log(searchHistory);
       var stringedSearchHistory = JSON.stringify(searchHistory)
       localStorage.setItem('localSearchHistory', stringedSearchHistory);
-    }
+    
 
     console.log(JSON.stringify(searchHistory))
 
-    gameTitleInput = $("#gameInput").val().trim().replace(/\s/g, '-'); //sets gameTitleInput to text input
+    
     $("#gameInput").val("")
 
 
     if ($('#similarSearch').is(':checked')) {
-      if ((gameTitleInput !== "")) { //if gameTitleInput is not null
 
         $("#invalidTitle").css({ "display": "none" }) //error message is not there
 
@@ -132,15 +132,16 @@ $(document).ready(function () {
 
         //appending div to the output
       }
-      else $("#invalidTitle").css({ "display": "block", "color": "red", "margin-top": "10px" });       //error message appears if form isn't filled out properly
-    }
+            //error message appears if form isn't filled out properly
+    }else $("#invalidTitle").css({ "display": "block", "color": "#990100", "margin-top": "10px" }); 
 
 
     if ($('#specificSearch').is(':checked')) {
       var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
 
-      if ((gameTitleInput !== "")) {
+      
         function specificGameSearch() {
+          $("#invalidTitle").css({ "display": "none" })
           console.log("works");
           $("#wishListError").html("");
           metaName = specificSearchGameTitleInput;
@@ -179,13 +180,10 @@ $(document).ready(function () {
           });
         }
         specificGameSearch();
-      } else $("#invalidTitle").css({ "display": "block", "color": "red", "margin-top": "10px" });
+       if (gameTitleInput === ""){  $("#invalidTitle").css({ "display": "block", "color": "#990100", "margin-top": "10px", "font-emphais": "bold" });
 
-
+      }
     }
-
-
-
 
   })
 
