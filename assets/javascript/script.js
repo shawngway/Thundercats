@@ -67,12 +67,14 @@ $(document).ready(function () {
 
   $("#submitButton").on("click", function (event) { //whenever the submit button is clicked
     event.preventDefault();
+    if ((gameTitleInput !== "")) {
+      var specificSearchGameTitleInput = $("#gameInput").val().trim();
+      searchHistory.push($("#gameInput").val().trim());
+      console.log(searchHistory);
+      var stringedSearchHistory = JSON.stringify(searchHistory)
+      localStorage.setItem('localSearchHistory', stringedSearchHistory);
+    }
 
-    var specificSearchGameTitleInput = $("#gameInput").val().trim();
-    searchHistory.push($("#gameInput").val().trim());
-    console.log(searchHistory);
-    var stringedSearchHistory = JSON.stringify(searchHistory)
-    localStorage.setItem('localSearchHistory', stringedSearchHistory);
     console.log(JSON.stringify(searchHistory))
 
     gameTitleInput = $("#gameInput").val().trim().replace(/\s/g, '-'); //sets gameTitleInput to text input
@@ -133,49 +135,57 @@ $(document).ready(function () {
       else $("#invalidTitle").css({ "display": "block", "color": "red", "margin-top": "10px" });       //error message appears if form isn't filled out properly
     }
 
+
     if ($('#specificSearch').is(':checked')) {
       var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
 
-      function specificGameSearch() {
-        console.log("works");
-        $("#wishListError").html("");
-        metaName = specificSearchGameTitleInput;
-        console.log(metaName);
-        gameInspected = metaName.replace(/\s/g + '-' + /\s/g, '-');
-        console.log(gameInspected);
-        $("#wishlistButton").removeAttr("id");
-        $("#wishlistButton").attr("id", metaName);
-        console.log("this is being read")
-        $.ajax({
-          url: queryURL,
-          method: "POST",
-          headers: {
-            "user-key": "d61ece206f9dedf20a9aa373ffa29739"
-          },
-          data: 'search ' + ' " ' + metaName + ' " ' + '; fields *;'
-          //where rating > 99;fields name, category, cover, platforms, videos; limit 4; 
-        }).then(function (response) {
-          console.log(response)
-          gameById(response[0].id)
-            .then(function (game) {
-              console.log("trying to do something with response");
-              console.log("game name: " + game[0].name)
-              $("#gameModal").modal("toggle")
-              $("#gameModalHeader").html(`<h1 id='cssHeaderForSpecificGameModal'>${game[0].name}</h1>`)
-              $("#gameInfo").html("<p> " + game[0].summary + "</p>")
-              $("#gameInfo").append("<p> Rating: " + game[0].rating + "</p>")
-              $("#gameInfo").append("<button type='button' class='btn btn-dark' id='cssForSpecificGameModal'><a id='cssForSpecificGameModal href='" + game[0].url + "'  target='blank'>Go to IGDB for more Info</a></button>")
-              console.log(game)
-            })
-          //<button type="button" class="btn btn-dark" id="wishlistButton">
-          console.log(response);
-          console.log(response[0]);
-        }).fail(function (jqXHR, textStatus) {
-          console.error(textStatus)
-        });
-      }
-      specificGameSearch();
+      if ((gameTitleInput !== "")) {
+        function specificGameSearch() {
+          console.log("works");
+          $("#wishListError").html("");
+          metaName = specificSearchGameTitleInput;
+          console.log(metaName);
+          gameInspected = metaName.replace(/\s/g + '-' + /\s/g, '-');
+          console.log(gameInspected);
+          $("#wishlistButton").removeAttr("id");
+          $("#wishlistButton").attr("id", metaName);
+          console.log("this is being read")
+          $.ajax({
+            url: queryURL,
+            method: "POST",
+            headers: {
+              "user-key": "d61ece206f9dedf20a9aa373ffa29739"
+            },
+            data: 'search ' + ' " ' + metaName + ' " ' + '; fields *;'
+            //where rating > 99;fields name, category, cover, platforms, videos; limit 4; 
+          }).then(function (response) {
+            console.log(response)
+            gameById(response[0].id)
+              .then(function (game) {
+                console.log("trying to do something with response");
+                console.log("game name: " + game[0].name)
+                $("#gameModal").modal("toggle")
+                $("#gameModalHeader").html(`<h1 id='cssHeaderForSpecificGameModal'>${game[0].name}</h1>`)
+                $("#gameInfo").html("<p> " + game[0].summary + "</p>")
+                $("#gameInfo").append("<p> Rating: " + game[0].rating + "</p>")
+                $("#gameInfo").append("<button type='button' class='btn btn-dark' id='cssForSpecificGameModal'><a id='cssForSpecificGameModal href='" + game[0].url + "'  target='blank'>Go to IGDB for more Info</a></button>")
+                console.log(game)
+              })
+            //<button type="button" class="btn btn-dark" id="wishlistButton">
+            console.log(response);
+            console.log(response[0]);
+          }).fail(function (jqXHR, textStatus) {
+            console.error(textStatus)
+          });
+        }
+        specificGameSearch();
+      } else $("#invalidTitle").css({ "display": "block", "color": "red", "margin-top": "10px" });
+
+
     }
+
+
+
 
   })
 
