@@ -46,7 +46,7 @@ $(document).ready(function () {
 
     } else {
       console.log("user logged out")
-      $("#carousel").empty()       //when user is signed out nav bar changes to this
+      $("#gameSugg").html("")       //when user is signed out nav bar changes to this
       $("#invalidTitle").css({ "display": "none" });
       $("#contentHidden").hide();
       $("#submitButton").hide()
