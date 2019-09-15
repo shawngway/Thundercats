@@ -133,34 +133,46 @@
                     </button>
                 </div>
 
-                    <div>
-                            <ul class="list-group" id="needsToBeGreyBackground">
-                                    <li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="userEmail"></h5></li>
-                                    <li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="userSince">User Since:</h5></li>
-                                    <li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="currentWishListCount">Games In Current Wish List:</h5></li>
-                                    <li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="totalWishListCount">total games added</h5></li>
-                                    <li class="list-group-item" id="needsgreybackground"><h5 class="accountInline" id="DeletedGamesCount">Games Removed From Wish List:</h5></li>                    
-                                  </ul>
-                                  <div class="accordion" id="accordionExample">
-                                        <div class="card">
-                                          <div class="card-body" id="headingOne">
-                                            <h2 class="mb-0">
-                                              <button class="btn btn-dark" id="searchHistoryButton" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                <h5>Search History</h5>
-                                              </button>
-                                            </h2>
-                                          </div>
-                                      
-                                          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                    <ul class="list-group" id="searchHistoryAppend">
-                                                        
-                                                    </ul>
-                                              
-                                            </div>
-                                          </div>
-                                        </div>
-                                        
+                <div>
+                    <ul class="list-group" id="needsToBeGreyBackground">
+                        <li class="list-group-item" id="needsgreybackground">
+                            <h5 class="accountInline" id="userEmail"></h5>
+                        </li>
+                        <li class="list-group-item" id="needsgreybackground">
+                            <h5 class="accountInline" id="userSince">User Since:</h5>
+                        </li>
+                        <li class="list-group-item" id="needsgreybackground">
+                            <h5 class="accountInline" id="currentWishListCount">Games In Current Wish List:</h5>
+                        </li>
+                        <li class="list-group-item" id="needsgreybackground">
+                            <h5 class="accountInline" id="totalWishListCount">total games added</h5>
+                        </li>
+                        <li class="list-group-item" id="needsgreybackground">
+                            <h5 class="accountInline" id="DeletedGamesCount">Games Removed From Wish List:</h5>
+                        </li>
+                    </ul>
+                    <div class="accordion" id="accordionExample">
+                        <div class="card">
+                            <div class="card-body" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-dark" id="searchHistoryButton" type="button"
+                                        data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                        aria-controls="collapseOne">
+                                        <h5>Search History</h5>
+                                    </button>
+                                </h2>
+                            </div>
+
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <ul class="list-group" id="searchHistoryAppend">
+
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -192,7 +204,7 @@
             <div class="container">
                 <img src="https://shawngway.github.io/Thundercats/assets/images/nglogodrk.png" width="250"
                     alt="Next Game Logo"><br><br>
-        
+
             </div>
             <!-- input for searching by title.  we can add more parameters here (year, company) if we want.  our genre img links can go before or after, haven't made them yet -->
             <form class="text-center my-1 col-md-4 offset-md-4">
@@ -232,7 +244,8 @@
                 </li>
             </ul>
 
-            <a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+            <a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous
+                uk-slider-item="previous"></a>
             <a class="uk-position-center-right uk-position-small" href="#" uk-slidenav-next uk-slider-item="next"></a>
 
         </div>
@@ -267,7 +280,7 @@
     <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-firestore.js"></script>
 
     <script src="assets/javascript/script.js"></script>
-    
+
 
 </body>
 

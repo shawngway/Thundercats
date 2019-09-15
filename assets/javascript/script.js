@@ -265,12 +265,7 @@ $(document).ready(function () {
         $("#closeSignUp").click();
         $("#signUpInputPassword1").val("");       //closes and resets the fields in the sign up modal
         $("#signUpInputEmail1").val("");
-
-
       });
-
-
-
     }
     else $("#signUpError").html("One or more fields are invalid").css({ "color": "red" })   //if input is messed up red words saying input values are invalid comes up
   });
@@ -304,7 +299,7 @@ $(document).ready(function () {
       card.append(cardHead);             //makes a button with the contents equal to the index array that its grabbing the info from
       var button = $("<button>").attr({ "class": "btn btn-dark btn-sm m-1", "data-toggle": "collapse", "data-target": "#collapse" + (i + 1), "aria-expanded": "true", "aria-controls": "collapse" + (i + 1), "id": wishList[i].replace(/\s/g, '-') });
       button.append(wishList[i]);
-      cardHead.append(button);
+      cardHead.append(button);    
       var collapse = $("<div>").attr({ "id": "collapse" + (i + 1), "class": "collapse", "aria-labelledby": "heading" + (i + 1), "data-parent": "#accordion" });
       var cardBody = $("<div>").attr({ "class": "card-body", "id": "cardBody" + wishList[i].replace(/\s/g, '-') });
       card.append(collapse);
@@ -354,7 +349,6 @@ $(document).ready(function () {
 
 
   $("#libraryNav").on("click", function (event) {
-
 
     populateWishList()
 
