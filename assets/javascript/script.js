@@ -140,7 +140,6 @@ $(document).ready(function () {
     if ($('#specificSearch').is(':checked')) {
       var queryURL = "https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/";
 
-
       if (gameTitleInput !==""){
         $("#invalidTitle").css({ "display": "none" });
         function specificGameSearch() {
@@ -187,45 +186,6 @@ $(document).ready(function () {
         
        if (gameTitleInput === ""){  $("#invalidTitle").css({ "display": "block", "color": "#990100", "margin-top": "10px", "font-emphais": "bold" });
 
-
-      function specificGameSearch() {
-        console.log("works");
-        $("#wishListError").html("");
-        metaName = specificSearchGameTitleInput.replace(" " + '-' + " ", '-').replace("-", ' ');
-        console.log(metaName);
-        gameInspected = metaName;
-        console.log(gameInspected);
-        $("#wishlistButton").removeAttr("id");
-        $("#wishlistButton").attr("id", metaName);
-        console.log("this is being read")
-        $.ajax({
-          url: queryURL,
-          method: "POST",
-          headers: {
-            "user-key": "d61ece206f9dedf20a9aa373ffa29739"
-          },
-          data: 'search ' + ' " ' + metaName + ' " ' + '; fields *;'
-          //where rating > 99;fields name, category, cover, platforms, videos; limit 4; 
-        }).then(function (response) {
-          console.log(response)
-          gameById(response[0].id)
-            .then(function (game) {
-              console.log("trying to do something with response");
-              console.log("game name: " + game[0].name)
-              $("#gameModal").modal("toggle")
-              $("#gameModalHeader").html(`<h1 id='cssHeaderForSpecificGameModal'>${game[0].name}</h1>`)
-              $("#gameInfo").html("<p> " + game[0].summary + "</p>")
-              $("#gameInfo").append("<p> Rating: " + game[0].rating + "</p>")
-              $("#gameInfo").append("<button type='button' class='btn btn-dark' id='cssForSpecificGameModal'><a id='cssForSpecificGameModal href='" + game[0].url + "'  target='blank'>Go to IGDB for more Info</a></button>")
-              console.log(game)
-            })
-          //<button type="button" class="btn btn-dark" id="wishlistButton">
-          console.log(response);
-          console.log(response[0]);
-        }).fail(function (jqXHR, textStatus) {
-          console.error(textStatus)
-        });
-
       }
     }
 
@@ -241,10 +201,10 @@ $(document).ready(function () {
     console.log("works");
     $("#wishListError").html("");
     console.log($(this).attr("data-name"));
-    metaName = $(this).attr("data-name").replace(":", "").replace(" " + '-' + " ", '-'); //no hyphens
+    metaName = $(this).attr("data-name"); //no hyphens
     console.log($(this).attr("data-name"))
     console.log(metaName);
-    gameInspected = metaName.replace(" " + '-' + " ", '-').replace("-", ' ');
+    gameInspected = metaName
     console.log(gameInspected);
     $("#wishlistButton").removeAttr("id");
     $("#wishlistButton").attr("id", metaName);
@@ -262,8 +222,7 @@ $(document).ready(function () {
       console.log(response)
       gameById(response[0].id)
         .then(function (game) {
-          gameInspected = game[0].name.replace(":", "").replace(" " + '-' + " ", '-').replace("-", ' ');
-          console.log(game[0].name)
+          gameInspected = game[0].name.replace(":", "");
           console.log(gameInspected)
           console.log("trying to do something with response");
           $("#gameModal").val("")
@@ -424,7 +383,6 @@ $(document).ready(function () {
     console.log("wishlist accordian clicked");
 
     var game = this.id.replace("---", '-')
-    this.id = this.id.replace("-"+"-"+"-", '-')
     $("#cardBody" + game).empty();
     console.log(this.id)
     console.log(game)
@@ -465,7 +423,6 @@ $(document).ready(function () {
     event.preventDefault();
     console.log($(this))
     $("#wishListError").html("")
-    gameInspected = gameInspected.replace(" " + '-' + " ", '-').replace("-", ' ')
     console.log(gameInspected);
     var contains = wishList.includes(gameInspected)   //checks if the game is already in their wishlist
     console.log(wishList.length);
